@@ -1,13 +1,13 @@
-import Board from './components/Board'
-import Global from './styles/global'
+import MainRoutes from "./routes";
+import Global from "./styles/global";
 
 function App() {
   return (
     <>
       <Global />
-      <Board />
+      <MainRoutes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

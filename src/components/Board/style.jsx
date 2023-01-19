@@ -1,30 +1,25 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const StyledBoard = styled.div`
+  display: grid;
+  place-content: center;
+  height: 100vh;
+
   .container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    margin-top: 18px;
-  }
-  .columnA,
-  .columnB,
-  .columnC,
-  .columnD,
-  .columnE,
-  .columnF {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    height: 600px;
+    width: 600px;
+    background-color: white;
   }
   .home-black {
-    background-color: black;
-    width: 150px;
-    height: 150px;
+    background-color: white;
+    width: 100px;
+    height: 100px;
   }
   .home-white {
-    background-color: white;
-    width: 150px;
-    height: 150px;
+    background-color: black;
+    width: 100px;
+    height: 100px;
   }
-`
+`;

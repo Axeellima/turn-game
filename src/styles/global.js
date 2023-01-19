@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
@@ -27,16 +27,11 @@ export default createGlobalStyle`
     font-family: var(--input-font);
 
     overflow-x: hidden;
-    background: var(--white);
+    background: var(--grey-0);
   }
 
   button {
     cursor: pointer;
   }
 
-  form{
-    background-color: var(--color-primary);
-    font-family: var(--input-font);
-    color: var(--white);
-  }
-`
+`;
