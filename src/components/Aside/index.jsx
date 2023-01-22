@@ -3,7 +3,7 @@ import { useState } from 'react'
 import rogue from '../../assets/imagem/truerogue.png'
 import mage from '../../assets/imagem/mage.png'
 
-const Aside = () => {
+const Aside = ({ handleOpenModal }) => {
   const [classNameText, setClassNameText] = useState('textRogue')
   const [classNameImg, setClassNameImg] = useState('imgRogue')
   const [classNameTextMage, setClassNameTextMage] = useState('textMage')
@@ -20,6 +20,9 @@ const Aside = () => {
           onMouseLeave={() => {
             setClassNameText('textRogue')
             setClassNameImg('imgRogue')
+          }}
+          onClick={() => {
+            handleOpenModal()
           }}
         >
           <img src={rogue} alt="" className={classNameImg} />
@@ -40,6 +43,9 @@ const Aside = () => {
           onMouseLeave={() => {
             setClassNameTextMage('textMage')
             setClassNameImgMage('imgMage')
+          }}
+          onClick={() => {
+            handleOpenModal()
           }}
         >
           <img src={mage} alt="" className={classNameImgMage} />
