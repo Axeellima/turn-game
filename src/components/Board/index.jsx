@@ -7,9 +7,7 @@ const Board = () => {
   let board = []
   for (let v = verticalAxis.length - 1; v >= 0; v--) {
     for (let h = 0; h < horizontalAxis.length; h++) {
-      const number = v + h + 2
-
-      number % 2 === 0
+      v < 3
         ? board.push(<div className="home-white"></div>)
         : board.push(<div className="home-black"></div>)
     }
