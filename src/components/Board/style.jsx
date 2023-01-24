@@ -1,14 +1,14 @@
-import styled from 'styled-components'
-import backgroundBoard2 from '../../assets/imagem/redback2.jpg'
-import blueBack from '../../assets/imagem/blueback.jpg'
+import styled from "styled-components";
+import backgroundBoard2 from "../../assets/imagem/redback2.jpg";
+import blueBack from "../../assets/imagem/blueback.jpg";
 
 export const StyledBoard = styled.div`
   display: grid;
   place-content: center;
   height: 100vh;
   width: 80%;
-  background-image: url('https://t4.ftcdn.net/jpg/03/05/95/21/360_F_305952154_96qiEvv5kwpdDQ6EVNGSpcNt8IkQWh6W.jpg');
-  background-size: 110%;
+  background-image: url("https://t4.ftcdn.net/jpg/03/05/95/21/360_F_305952154_96qiEvv5kwpdDQ6EVNGSpcNt8IkQWh6W.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: -76px;
 
@@ -41,4 +41,4 @@ export const StyledBoard = styled.div`
   .home-white:hover {
     border: 1px solid lightblue;
   }
-`
+`;

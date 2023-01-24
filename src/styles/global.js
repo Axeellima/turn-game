@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
@@ -11,7 +11,7 @@ export default createGlobalStyle`
     --sucess: #3FE864;
     --fail: #E83F5B;
 
-    --input-font: 'Inter';
+    --input-font: "Alagard";
   }
 
   * {
@@ -32,6 +32,7 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    font-family: var(--input-font);
   }
 
-`
+`;
