@@ -1,10 +1,10 @@
-import { PieceStyle } from "./style";
+import { PieceStyle } from './style'
 
-const Piece = ({ image }) => {
+const Piece = ({ image, i }) => {
   return (
-    <PieceStyle className="piece">
-      {image ? <img src={image} alt="" /> : undefined}
+    <PieceStyle image={image}>
+      {image ? <img src={image} alt='' className='piece-img' /> : undefined}
     </PieceStyle>
-  );
-};
-export default Piece;
+  )
+}
+export default Piece
