@@ -3,11 +3,12 @@ import { useState } from 'react'
 import rogue from '../../assets/imagem/truerogue.png'
 import mage from '../../assets/imagem/mage.png'
 
-const Aside = ({ handleOpenModal }) => {
+const Aside = ({ handleOpenModal, setSelect, select }) => {
   const [classNameText, setClassNameText] = useState('textRogue')
   const [classNameImg, setClassNameImg] = useState('imgRogue')
   const [classNameTextMage, setClassNameTextMage] = useState('textMage')
   const [classNameImgMage, setClassNameImgMage] = useState('imgRogue')
+
   return (
     <StyledAside>
       <div className="container">
@@ -32,7 +33,14 @@ const Aside = ({ handleOpenModal }) => {
           </div>
         </section>
         <div className="select-div">
-          <button className="select">Selecionar</button>
+          <button
+            className="select"
+            onClick={() => {
+              setSelect(1)
+            }}
+          >
+            Selecionar
+          </button>
         </div>
         <section
           className="mainMage"
@@ -55,7 +63,14 @@ const Aside = ({ handleOpenModal }) => {
           </div>
         </section>
         <div className="select-div">
-          <button className="select">Selecionar</button>
+          <button
+            className="select"
+            onClick={() => {
+              setSelect(2)
+            }}
+          >
+            Selecionar
+          </button>
         </div>
       </div>
     </StyledAside>

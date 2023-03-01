@@ -1,16 +1,13 @@
 import Piece from '../Piece'
 import { StyledBoard } from './style'
-import guardian from '../../assets/characters/guardian.png'
-import assassin from '../../assets/characters/assassin.png'
-import kingmage from '../../assets/characters/mage.png'
-import pyro from '../../assets/characters/pyro.png'
-import mage from '../../assets/characters/kingmage.png'
-import thief from '../../assets/characters/thief.png'
-import kingassassin from '../../assets/characters/kingassassin.png'
 import ActionBar from '../ActionBar'
 import { useState } from 'react'
+import { Rogue } from '../../utils/rogue'
+import { Mage } from '../../utils/mage'
+import { useEffect } from 'react'
+import { game } from '../../game'
 
-const pieces = []
+export const players = []
 let activePiece = null
 const grabPiece = (e) => {
   if (activePiece && activePiece.classList.contains('piece-img')) {
@@ -27,40 +24,22 @@ const grabPiece = (e) => {
   return false
 }
 
-//red pieces
-pieces.push({ image: guardian, x: 0, y: 1 })
-pieces.push({ image: guardian, x: 5, y: 1 })
-
-pieces.push({ image: assassin, x: 1, y: 4 })
-pieces.push({ image: assassin, x: 4, y: 4 })
-
-pieces.push({ image: thief, x: 2, y: 4 })
-pieces.push({ image: thief, x: 3, y: 4 })
-
-for (let i = 0; i <= 5; i++) {
-  if (i !== 2) pieces.push({ image: thief, x: i, y: 5 })
-}
-
-pieces.push({ image: kingassassin, x: 2, y: 5 })
-
-//blue pieces
-pieces.push({ image: guardian, x: 0, y: 4 })
-pieces.push({ image: guardian, x: 5, y: 4 })
-
-for (let i = 1; i <= 4; i++) {
-  pieces.push({ image: mage, x: i, y: 1 })
-}
-pieces.push({ image: mage, x: 0, y: 0 })
-pieces.push({ image: mage, x: 2, y: 0 })
-pieces.push({ image: mage, x: 5, y: 0 })
-pieces.push({ image: pyro, x: 1, y: 0 })
-pieces.push({ image: pyro, x: 4, y: 0 })
-pieces.push({ image: kingmage, x: 3, y: 0 })
-
 const verticalAxis = ['1', '2', '3', '4', '5', '6']
 const horizontalAxis = ['a', 'b', 'c', 'd', 'e', 'f']
 
-const Board = () => {
+const Board = ({ select }) => {
+  useEffect(() => {
+    if (select) {
+      console.log(select)
+      players.push(new Rogue())
+      players.push(new Mage())
+      game(select)
+
+      return
+    }
+
+    return
+  }, [select])
   let board = []
   const [actionBarActive, setActionBarActive] = useState(false)
   const [selectedPiece, setSelectedPiece] = useState(null)
@@ -69,37 +48,68 @@ const Board = () => {
     for (let h = 0; h < horizontalAxis.length; h++) {
       let image = undefined
 
-      pieces.forEach((piece) => {
-        if (piece.x === h && piece.y === v) {
-          image = piece.image
-        }
+      players.forEach((player) => {
+        // if (piece.x === h && piece.y === v) {
+        //   image = piece.image
+        // }
+
+        player.thiefs?.forEach((piece) => {
+          if (piece.x === h && piece.y === v) {
+            image = piece.img
+          }
+        })
+        player.assassins?.forEach((piece) => {
+          if (piece.x === h && piece.y === v) {
+            image = piece.img
+          }
+        })
+        player.guardians?.forEach((piece) => {
+          if (piece.x === h && piece.y === v) {
+            image = piece.img
+          }
+        })
+        player.sorcerers?.forEach((piece) => {
+          if (piece.x === h && piece.y === v) {
+            image = piece.img
+          }
+        })
+        player.piromancers?.forEach((piece) => {
+          if (piece.x === h && piece.y === v) {
+            image = piece.img
+          }
+        })
+        player.king?.forEach((piece) => {
+          if (piece.x === h && piece.y === v) {
+            image = piece.img
+          }
+        })
       })
 
       v < 3
         ? board.push(
-            <div className='home-white'>
+            <div className="home-white">
               {v < 2 ? (
                 <Piece image={image} i={horizontalAxis[v] + verticalAxis[h]} />
               ) : (
                 <></>
               )}
-            </div>
+            </div>,
           )
         : board.push(
-            <div className='home-black'>
+            <div className="home-black">
               {v > 3 ? (
                 <Piece image={image} i={horizontalAxis[v] + verticalAxis[h]} />
               ) : (
                 <></>
               )}
-            </div>
+            </div>,
           )
     }
   }
   return (
     <StyledBoard>
       <div
-        className='container'
+        className="container"
         onMouseDown={(e) => {
           const grab = grabPiece(e)
           grab.grab ? setActionBarActive(true) : setActionBarActive(false)

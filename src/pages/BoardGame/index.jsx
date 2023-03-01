@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Wrapper } from './style'
 
 const BoardGame = () => {
+  const [select, setSelect] = useState(null)
   const [openModal, setOpenModal] = useState(false)
 
   const handleOpenModal = () => {
@@ -16,8 +17,12 @@ const BoardGame = () => {
         <Modal openModal={openModal} handleOpenModal={handleOpenModal} />
       )}
       <Wrapper>
-        <Aside handleOpenModal={handleOpenModal} />
-        <Board />
+        <Aside
+          handleOpenModal={handleOpenModal}
+          select={select}
+          setSelect={setSelect}
+        />
+        <Board select={select} setSelect={setSelect} />
       </Wrapper>
     </>
   )
