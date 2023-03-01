@@ -7,8 +7,25 @@ import pyro from '../../assets/characters/pyro.png'
 import mage from '../../assets/characters/kingmage.png'
 import thief from '../../assets/characters/thief.png'
 import kingassassin from '../../assets/characters/kingassassin.png'
+import ActionBar from '../ActionBar'
+import { useState } from 'react'
 
 const pieces = []
+let activePiece = null
+const grabPiece = (e) => {
+  if (activePiece && activePiece.classList.contains('piece-img')) {
+    activePiece.style.border = 'none'
+  }
+  activePiece = e.target
+  if (activePiece.classList.contains('piece-img')) {
+    activePiece.style.border = '1px solid yellow'
+    return {
+      grab: true,
+      id: activePiece.id,
+    }
+  }
+  return false
+}
 
 //red pieces
 pieces.push({ image: guardian, x: 0, y: 1 })
@@ -45,6 +62,8 @@ const horizontalAxis = ['a', 'b', 'c', 'd', 'e', 'f']
 
 const Board = () => {
   let board = []
+  const [actionBarActive, setActionBarActive] = useState(false)
+  const [selectedPiece, setSelectedPiece] = useState(null)
 
   for (let v = verticalAxis.length - 1; v >= 0; v--) {
     for (let h = 0; h < horizontalAxis.length; h++) {
@@ -58,7 +77,7 @@ const Board = () => {
 
       v < 3
         ? board.push(
-            <div className='home-white border'>
+            <div className='home-white'>
               {v < 2 ? (
                 <Piece image={image} i={horizontalAxis[v] + verticalAxis[h]} />
               ) : (
@@ -67,7 +86,7 @@ const Board = () => {
             </div>
           )
         : board.push(
-            <div className='home-black border'>
+            <div className='home-black'>
               {v > 3 ? (
                 <Piece image={image} i={horizontalAxis[v] + verticalAxis[h]} />
               ) : (
@@ -79,7 +98,17 @@ const Board = () => {
   }
   return (
     <StyledBoard>
-      <div className='container'>{board}</div>
+      <div
+        className='container'
+        onMouseDown={(e) => {
+          const grab = grabPiece(e)
+          grab.grab ? setActionBarActive(true) : setActionBarActive(false)
+          grab.id ? setSelectedPiece(grab.id) : setSelectedPiece(null)
+        }}
+      >
+        {board}
+      </div>
+      {actionBarActive && <ActionBar selectedPiece={selectedPiece} />}
     </StyledBoard>
   )
 }
