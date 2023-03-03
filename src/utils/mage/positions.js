@@ -20,13 +20,13 @@ export const positionsMageBlueSide = {
   sorcerer1: [2, 1],
   sorcerer2: [3, 1],
   sorcerer3: [0, 0],
-  sorcerer4: [1, 0],
+  sorcerer4: [1, 1],
   sorcerer5: [2, 0],
-  sorcerer6: [4, 0],
+  sorcerer6: [4, 1],
   sorcerer7: [5, 0],
 
-  pyromant1: [1, 1],
-  pyromant2: [4, 1],
+  pyromant1: [1, 0],
+  pyromant2: [4, 0],
 
   guardian1: [0, 1],
   guardian2: [5, 1],

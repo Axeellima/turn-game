@@ -11,9 +11,9 @@ const Aside = ({ handleOpenModal, setSelect, select }) => {
 
   return (
     <StyledAside>
-      <div className="container">
+      <div className='container'>
         <section
-          className="mainRogue"
+          className='mainRogue'
           onMouseEnter={() => {
             setClassNameText('textRogue rogueAnimation')
             setClassNameImg('imgRogue rogueAnimation')
@@ -26,15 +26,15 @@ const Aside = ({ handleOpenModal, setSelect, select }) => {
             handleOpenModal()
           }}
         >
-          <img src={rogue} alt="" className={classNameImg} />
+          <img src={rogue} alt='' className={classNameImg} />
           <div className={classNameText}>
-            <h1 className="titleRogue">Ladino</h1>
+            <h1 className='titleRogue'>Ladino</h1>
             <p>Especializado em ataques corpo a corpo e ataques furtivos</p>
           </div>
         </section>
-        <div className="select-div">
+        <div className='select-div'>
           <button
-            className="select"
+            className='select'
             onClick={() => {
               setSelect(1)
             }}
@@ -43,7 +43,7 @@ const Aside = ({ handleOpenModal, setSelect, select }) => {
           </button>
         </div>
         <section
-          className="mainMage"
+          className='mainMage'
           onMouseEnter={() => {
             setClassNameTextMage('textMage rogueAnimation')
             setClassNameImgMage('imgMage rogueAnimation')
@@ -56,15 +56,15 @@ const Aside = ({ handleOpenModal, setSelect, select }) => {
             handleOpenModal()
           }}
         >
-          <img src={mage} alt="" className={classNameImgMage} />
+          <img src={mage} alt='' className={classNameImgMage} />
           <div className={classNameTextMage}>
-            <h1 className="titleMage">Mago</h1>
+            <h1 className='titleMage'>Mago</h1>
             <p>Especializado em ataques a distância e ataques em área</p>
           </div>
         </section>
-        <div className="select-div">
+        <div className='select-div'>
           <button
-            className="select"
+            className='select'
             onClick={() => {
               setSelect(2)
             }}
