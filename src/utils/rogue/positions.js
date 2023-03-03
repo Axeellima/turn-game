@@ -20,13 +20,13 @@ export const positionsRogueRedSide = {
   thief1: [0, 5],
   thief2: [3, 5],
   thief3: [5, 5],
-  thief4: [1, 4],
+  thief4: [1, 5],
   thief5: [2, 4],
   thief6: [3, 4],
-  thief7: [4, 4],
+  thief7: [4, 5],
 
-  assassin1: [1, 5],
-  assassin2: [4, 5],
+  assassin1: [1, 4],
+  assassin2: [4, 4],
 
   guardian1: [0, 4],
   guardian2: [5, 4],

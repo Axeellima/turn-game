@@ -111,7 +111,7 @@ const Board = ({ select }) => {
           const grab = grabPiece(e)
           grab.grab ? setActionBarActive(true) : setActionBarActive(false)
           if (select === 1) {
-            grab.id ? setSelectedPiece('pau no cu') : setSelectedPiece(null)
+            grab.id ? setSelectedPiece(grab.id) : setSelectedPiece(null)
           } else if (select === 2) {
             grab.id ? setSelectedPiece(grab.id) : setSelectedPiece(null)
           }
@@ -119,7 +119,9 @@ const Board = ({ select }) => {
       >
         {board}
       </div>
-      {actionBarActive && <ActionBar selectedPiece={selectedPiece} />}
+      {actionBarActive && (
+        <ActionBar selectedPiece={selectedPiece} select={select} />
+      )}
     </StyledBoard>
   )
 }
