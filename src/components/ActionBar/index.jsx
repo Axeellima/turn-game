@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ActionBarStyle } from './style'
 
-const ActionBar = ({ selectedPiece, select, board, players }) => {
+const ActionBar = ({ selectedPiece, select, board, players, setPlayers }) => {
   const [name, setName] = useState('Piece')
   useEffect(() => {
     console.log(select)
@@ -92,29 +92,23 @@ const ActionBar = ({ selectedPiece, select, board, players }) => {
   return (
     <ActionBarStyle>
       <h1>{name}</h1>
-      <button className="atk">Ataque</button>
+      <button className='atk'>Ataque</button>
       <button
-        className="move"
+        className='move'
         onClick={() => {
-          if (select === 1) {
-            players.forEach((player) => {
-              player.thiefs?.forEach((thief) => {})
-            })
-          } else if (select === 2) {
-            players.forEach((player) => {
-              player.sorcerers?.forEach((sorcerer) => {
-                if (sorcerer.currentPosition === selectedPiece.id) {
+          setPlayers((players) => {
+            const pieces = players.map((player) => {
+              player?.sorcerers?.forEach((sorcerer) => {
+                if (sorcerer.initialPosition === selectedPiece.id) {
                   sorcerer.move()
                   console.log(sorcerer.currentPosition)
-                  board.forEach((element) => {
-                    if (element.props.i === sorcerer.currentPosition) {
-                      console.log(element)
-                    }
-                  })
                 }
               })
+              return player
             })
-          }
+            console.log(pieces)
+            return pieces
+          })
         }}
       >
         Mover

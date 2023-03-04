@@ -62,9 +62,18 @@ class Sorcerer {
   }
   move() {
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
-    let newPosition = this.currentPosition.split('')[0]
+    let letterPosition = this.initialPosition.split('')[0]
     for (let i = 0; i < homes.length; i++) {
-      if (homes[i] === newPosition) {
+      if (
+        (homes[i] === letterPosition && letterPosition === 'e') ||
+        (homes[i] === letterPosition && letterPosition === 'f')
+      ) {
+        this.currentPosition = homes[i - 1] + this.currentPosition.split('')[1]
+        return
+      } else if (
+        (homes[i] === letterPosition && letterPosition === 'a') ||
+        (homes[i] === letterPosition && letterPosition === 'b')
+      ) {
         this.currentPosition = homes[i + 1] + this.currentPosition.split('')[1]
         return
       }

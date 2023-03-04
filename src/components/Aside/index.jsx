@@ -2,12 +2,17 @@ import { StyledAside } from './style'
 import { useState } from 'react'
 import rogue from '../../assets/imagem/truerogue.png'
 import mage from '../../assets/imagem/mage.png'
+import { Rogue } from '../../utils/rogue'
+import { Mage } from '../../utils/mage'
 
-const Aside = ({ handleOpenModal, setSelect, select }) => {
+const Aside = ({ handleOpenModal, setSelect, select, setPlayers }) => {
   const [classNameText, setClassNameText] = useState('textRogue')
   const [classNameImg, setClassNameImg] = useState('imgRogue')
   const [classNameTextMage, setClassNameTextMage] = useState('textMage')
   const [classNameImgMage, setClassNameImgMage] = useState('imgRogue')
+
+  const initialBoardRogue = [new Rogue(1), new Mage(1)]
+  const initialBoardMage = [new Rogue(2), new Mage(2)]
 
   return (
     <StyledAside>
@@ -37,6 +42,7 @@ const Aside = ({ handleOpenModal, setSelect, select }) => {
             className='select'
             onClick={() => {
               setSelect(1)
+              setPlayers(initialBoardRogue)
             }}
           >
             Selecionar
@@ -67,6 +73,7 @@ const Aside = ({ handleOpenModal, setSelect, select }) => {
             className='select'
             onClick={() => {
               setSelect(2)
+              setPlayers(initialBoardMage)
             }}
           >
             Selecionar
