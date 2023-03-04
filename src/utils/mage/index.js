@@ -2,6 +2,7 @@ import guardian from '../../assets/characters/guardian.png'
 import king from '../../assets/characters/mage.png'
 import pyromante from '../../assets/characters/pyro.png'
 import sorcerer from '../../assets/characters/kingmage.png'
+import { moveMage } from '../../services/moveMage'
 
 export class Mage {
   constructor(side) {
@@ -60,55 +61,27 @@ class Sorcerer {
     this.alive = true
     this.img = sorcerer
   }
-  move(board, team) {
+  move(board, team, direction) {
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
-    let canMove = board.map((home) => {
+    let canMove = board?.map((home) => {
       if (home.props.children.props.image !== undefined) {
         return {
-          home: home.props.i,
+          home: home,
+          id: home.props.id,
           canMove: false,
         }
       }
       return {
-        home: home.props.i,
+        home: home,
+        id: home.props.id,
         canMove: true,
       }
     })
-    if (team === 2) {
-      for (let i = 0; i < homes.length; i++) {
-        if (homes[i] === this.currentPosition[0]) {
-          let newPosition = homes[i + 1] + this.currentPosition.split('')[1]
-
-          const validMove = canMove.find((home) => {
-            if (home.canMove === true && home.home === newPosition) {
-              return home
-            }
-          })
-          if (validMove) {
-            this.currentPosition = newPosition
-          }
-          return
-        }
-      }
-    } else if (team === 1) {
-      for (let i = 0; i < homes.length; i++) {
-        if (homes[i] === this.currentPosition[0]) {
-          let newPosition = homes[i - 1] + this.currentPosition.split('')[1]
-
-          const validMove = canMove.find((home) => {
-            if (home.canMove === true && home.home === newPosition) {
-              return home
-            }
-          })
-          if (validMove) {
-            console.log(validMove)
-            this.currentPosition = newPosition
-          }
-          return
-        }
-      }
-    }
+    moveMage(homes, canMove, board, team, direction, this.currentPosition)
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
   }
 }
 class Piromancer {

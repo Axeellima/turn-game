@@ -29,10 +29,15 @@ export const StyledBoard = styled.div`
     background-image: url(${backgroundBoard2});
     background-size: 100%;
   }
+  .can-move {
+    filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg)
+      brightness(95%) contrast(80%);
+  }
 
   .home-white {
     width: 100px;
     height: 100px;
+
     background-image: url(${blueBack});
     background-size: 100%;
   }

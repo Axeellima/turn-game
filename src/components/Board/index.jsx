@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useMemo } from 'react'
 
 let activePiece = null
-const grabPiece = (e) => {
+const grabPiece = (e, selectedPiece, players) => {
   if (activePiece && activePiece.classList.contains('piece-img')) {
     activePiece.style.border = 'none'
   }
@@ -17,6 +17,15 @@ const grabPiece = (e) => {
       id: activePiece.id,
       activePiece,
     }
+  } else if (activePiece.parentNode.classList.contains('can-move')) {
+    players.forEach((player) => {
+      player?.sorcerers?.forEach((sorcerer) => {
+        if (sorcerer.initialPosition === selectedPiece.id) {
+          sorcerer.switchHome(activePiece.parentNode.id)
+          activePiece.parentNode.classList.remove('can-move')
+        }
+      })
+    })
   }
   return false
 }
@@ -98,7 +107,7 @@ const Board = ({ select, players, setPlayers }) => {
             ? board.push(
                 <div
                   className='home-white'
-                  i={horizontalAxis[v] + verticalAxis[h]}
+                  id={horizontalAxis[v] + verticalAxis[h]}
                 >
                   <Piece image={image} i={id} />
                 </div>
@@ -106,7 +115,7 @@ const Board = ({ select, players, setPlayers }) => {
             : board.push(
                 <div
                   className='home-black'
-                  i={horizontalAxis[v] + verticalAxis[h]}
+                  id={horizontalAxis[v] + verticalAxis[h]}
                 >
                   <Piece image={image} i={id} />
                 </div>
@@ -123,7 +132,7 @@ const Board = ({ select, players, setPlayers }) => {
           <div
             className='container'
             onMouseDown={(e) => {
-              const grab = grabPiece(e)
+              const grab = grabPiece(e, selectedPiece, players)
               grab.grab ? setActionBarActive(true) : setActionBarActive(false)
               if (select === 1) {
                 grab.activePiece

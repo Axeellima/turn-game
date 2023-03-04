@@ -95,13 +95,12 @@ const ActionBar = ({ selectedPiece, select, board, players, setPlayers }) => {
       <button className='atk'>Ataque</button>
       <button
         className='move'
-        onClick={() => {
+        onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {
               player?.sorcerers?.forEach((sorcerer) => {
                 if (sorcerer.initialPosition === selectedPiece.id) {
-                  sorcerer.move(board, select)
-                  console.log(selectedPiece)
+                  sorcerer.move(board, select, 'up')
                 }
               })
               return player
