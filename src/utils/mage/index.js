@@ -60,22 +60,53 @@ class Sorcerer {
     this.alive = true
     this.img = sorcerer
   }
-  move() {
+  move(board, team) {
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
-    let letterPosition = this.initialPosition.split('')[0]
-    for (let i = 0; i < homes.length; i++) {
-      if (
-        (homes[i] === letterPosition && letterPosition === 'e') ||
-        (homes[i] === letterPosition && letterPosition === 'f')
-      ) {
-        this.currentPosition = homes[i - 1] + this.currentPosition.split('')[1]
-        return
-      } else if (
-        (homes[i] === letterPosition && letterPosition === 'a') ||
-        (homes[i] === letterPosition && letterPosition === 'b')
-      ) {
-        this.currentPosition = homes[i + 1] + this.currentPosition.split('')[1]
-        return
+
+    let canMove = board.map((home) => {
+      if (home.props.children.props.image !== undefined) {
+        return {
+          home: home.props.i,
+          canMove: false,
+        }
+      }
+      return {
+        home: home.props.i,
+        canMove: true,
+      }
+    })
+    if (team === 2) {
+      for (let i = 0; i < homes.length; i++) {
+        if (homes[i] === this.currentPosition[0]) {
+          let newPosition = homes[i + 1] + this.currentPosition.split('')[1]
+
+          const validMove = canMove.find((home) => {
+            if (home.canMove === true && home.home === newPosition) {
+              return home
+            }
+          })
+          if (validMove) {
+            this.currentPosition = newPosition
+          }
+          return
+        }
+      }
+    } else if (team === 1) {
+      for (let i = 0; i < homes.length; i++) {
+        if (homes[i] === this.currentPosition[0]) {
+          let newPosition = homes[i - 1] + this.currentPosition.split('')[1]
+
+          const validMove = canMove.find((home) => {
+            if (home.canMove === true && home.home === newPosition) {
+              return home
+            }
+          })
+          if (validMove) {
+            console.log(validMove)
+            this.currentPosition = newPosition
+          }
+          return
+        }
       }
     }
   }

@@ -100,13 +100,13 @@ const ActionBar = ({ selectedPiece, select, board, players, setPlayers }) => {
             const pieces = players.map((player) => {
               player?.sorcerers?.forEach((sorcerer) => {
                 if (sorcerer.initialPosition === selectedPiece.id) {
-                  sorcerer.move()
-                  console.log(sorcerer.currentPosition)
+                  sorcerer.move(board, select)
+                  console.log(selectedPiece)
                 }
               })
               return player
             })
-            console.log(pieces)
+
             return pieces
           })
         }}

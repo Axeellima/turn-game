@@ -34,6 +34,7 @@ const Board = ({ select, players, setPlayers }) => {
     for (let v = verticalAxis.length - 1; v >= 0; v--) {
       for (let h = 0; h < horizontalAxis.length; h++) {
         let image = undefined
+        let id = undefined
 
         if (players.length > 0) {
           players.forEach((player) => {
@@ -43,6 +44,7 @@ const Board = ({ select, players, setPlayers }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 image = piece.img
+                id = piece.initialPosition
               }
             })
             player.assassins?.forEach((piece) => {
@@ -51,6 +53,7 @@ const Board = ({ select, players, setPlayers }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 image = piece.img
+                id = piece.initialPosition
               }
             })
             player.guardians?.forEach((piece) => {
@@ -59,6 +62,7 @@ const Board = ({ select, players, setPlayers }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 image = piece.img
+                id = piece.initialPosition
               }
             })
             player.sorcerers?.forEach((piece) => {
@@ -67,6 +71,7 @@ const Board = ({ select, players, setPlayers }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 image = piece.img
+                id = piece.initialPosition
               }
             })
             player.piromancers?.forEach((piece) => {
@@ -75,6 +80,7 @@ const Board = ({ select, players, setPlayers }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 image = piece.img
+                id = piece.initialPosition
               }
             })
             player.king?.forEach((piece) => {
@@ -83,6 +89,7 @@ const Board = ({ select, players, setPlayers }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 image = piece.img
+                id = piece.initialPosition
               }
             })
           })
@@ -93,10 +100,7 @@ const Board = ({ select, players, setPlayers }) => {
                   className='home-white'
                   i={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece
-                    image={image}
-                    i={horizontalAxis[v] + verticalAxis[h]}
-                  />
+                  <Piece image={image} i={id} />
                 </div>
               )
             : board.push(
@@ -104,10 +108,7 @@ const Board = ({ select, players, setPlayers }) => {
                   className='home-black'
                   i={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece
-                    image={image}
-                    i={horizontalAxis[v] + verticalAxis[h]}
-                  />
+                  <Piece image={image} i={id} />
                 </div>
               )
         }
