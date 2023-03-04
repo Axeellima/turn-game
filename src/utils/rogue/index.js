@@ -2,126 +2,36 @@ import guardian from '../../assets/characters/guardian.png'
 import assassin from '../../assets/characters/assassin.png'
 import thief from '../../assets/characters/thief.png'
 import king from '../../assets/characters/kingassassin.png'
-import { positionsRogueBlueSide } from './positions'
-import { positionsRogueRedSide } from './positions'
 
 export class Rogue {
   constructor(side) {
     this.side = side
     if (side === 1) {
       this.thiefs = [
-        new Thief(
-          positionsRogueBlueSide.thief1[0],
-          positionsRogueBlueSide.thief1[1]
-        ),
-        new Thief(
-          positionsRogueBlueSide.thief2[0],
-          positionsRogueBlueSide.thief2[1]
-        ),
-        new Thief(
-          positionsRogueBlueSide.thief3[0],
-          positionsRogueBlueSide.thief3[1]
-        ),
-        new Thief(
-          positionsRogueBlueSide.thief4[0],
-          positionsRogueBlueSide.thief4[1]
-        ),
-        new Thief(
-          positionsRogueBlueSide.thief5[0],
-          positionsRogueBlueSide.thief5[1]
-        ),
-        new Thief(
-          positionsRogueBlueSide.thief6[0],
-          positionsRogueBlueSide.thief6[1]
-        ),
-        new Thief(
-          positionsRogueBlueSide.thief7[0],
-          positionsRogueBlueSide.thief7[1]
-        ),
+        new Thief('a1'),
+        new Thief('a2'),
+        new Thief('a3'),
+        new Thief('a5'),
+        new Thief('a6'),
+        new Thief('b3'),
+        new Thief('b4'),
       ]
-      this.assassins = [
-        new Assassin(
-          positionsRogueBlueSide.assassin1[0],
-          positionsRogueBlueSide.assassin1[1]
-        ),
-        new Assassin(
-          positionsRogueBlueSide.assassin2[0],
-          positionsRogueBlueSide.assassin2[1]
-        ),
-      ]
-      this.guardians = [
-        new Guardian(
-          positionsRogueBlueSide.guardian1[0],
-          positionsRogueBlueSide.guardian1[1]
-        ),
-        new Guardian(
-          positionsRogueBlueSide.guardian2[0],
-          positionsRogueBlueSide.guardian2[1]
-        ),
-      ]
-      this.king = [
-        new King(
-          positionsRogueBlueSide.kingPosition[0],
-          positionsRogueBlueSide.kingPosition[1]
-        ),
-      ]
+      this.assassins = [new Assassin('b2'), new Assassin('b5')]
+      this.guardians = [new Guardian('b1'), new Guardian('b6')]
+      this.king = [new King('a4')]
     } else {
       this.thiefs = [
-        new Thief(
-          positionsRogueRedSide.thief1[0],
-          positionsRogueRedSide.thief1[1]
-        ),
-        new Thief(
-          positionsRogueRedSide.thief2[0],
-          positionsRogueRedSide.thief2[1]
-        ),
-        new Thief(
-          positionsRogueRedSide.thief3[0],
-          positionsRogueRedSide.thief3[1]
-        ),
-        new Thief(
-          positionsRogueRedSide.thief4[0],
-          positionsRogueRedSide.thief4[1]
-        ),
-        new Thief(
-          positionsRogueRedSide.thief5[0],
-          positionsRogueRedSide.thief5[1]
-        ),
-        new Thief(
-          positionsRogueRedSide.thief6[0],
-          positionsRogueRedSide.thief6[1]
-        ),
-        new Thief(
-          positionsRogueRedSide.thief7[0],
-          positionsRogueRedSide.thief7[1]
-        ),
+        new Thief('f1'),
+        new Thief('f2'),
+        new Thief('f4'),
+        new Thief('f5'),
+        new Thief('f6'),
+        new Thief('e3'),
+        new Thief('e4'),
       ]
-      this.assassins = [
-        new Assassin(
-          positionsRogueRedSide.assassin1[0],
-          positionsRogueRedSide.assassin1[1]
-        ),
-        new Assassin(
-          positionsRogueRedSide.assassin2[0],
-          positionsRogueRedSide.assassin2[1]
-        ),
-      ]
-      this.guardians = [
-        new Guardian(
-          positionsRogueRedSide.guardian1[0],
-          positionsRogueRedSide.guardian1[1]
-        ),
-        new Guardian(
-          positionsRogueRedSide.guardian2[0],
-          positionsRogueRedSide.guardian2[1]
-        ),
-      ]
-      this.king = [
-        new King(
-          positionsRogueRedSide.kingPosition[0],
-          positionsRogueRedSide.kingPosition[1]
-        ),
-      ]
+      this.assassins = [new Assassin('e2'), new Assassin('e5')]
+      this.guardians = [new Guardian('e1'), new Guardian('e6')]
+      this.king = [new King('f3')]
     }
   }
 
@@ -142,9 +52,9 @@ export class Rogue {
 }
 
 class Thief {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
+  constructor(initialPosition) {
+    this.initialPosition = initialPosition
+    this.currentPosition = initialPosition
     this.typeMove = 3
     this.damage = 1
     this.health = 5
@@ -153,9 +63,9 @@ class Thief {
   }
 }
 class Assassin {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
+  constructor(initialPosition) {
+    this.initialPosition = initialPosition
+    this.currentPosition = initialPosition
     this.typeMove = 3
     this.damage = 4
     this.health = 5
@@ -165,9 +75,9 @@ class Assassin {
 }
 
 class Guardian {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
+  constructor(initialPosition) {
+    this.initialPosition = initialPosition
+    this.currentPosition = initialPosition
     this.typeMove = 2
     this.damage = 0
     this.health = 8
@@ -182,9 +92,9 @@ class Guardian {
   }
 }
 class King {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
+  constructor(initialPosition) {
+    this.initialPosition = initialPosition
+    this.currentPosition = initialPosition
     this.typeMove = 1
     this.damage = 3
     this.health = 5
