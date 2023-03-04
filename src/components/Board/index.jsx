@@ -5,28 +5,35 @@ import { useState } from 'react'
 import { useMemo } from 'react'
 
 let activePiece = null
-const grabPiece = (e, selectedPiece, players) => {
+const grabPiece = (e, players, selectedPiece) => {
   if (activePiece && activePiece.classList.contains('piece-img')) {
     activePiece.style.border = 'none'
   }
   activePiece = e.target
   if (activePiece.classList.contains('piece-img')) {
     activePiece.style.border = '1px solid yellow'
+    const canMove = document.getElementsByClassName('can-move')[0]
+    canMove?.classList.remove('can-move')
     return {
       grab: true,
       id: activePiece.id,
       activePiece,
     }
   } else if (activePiece.parentNode.classList.contains('can-move')) {
-    players.forEach((player) => {
+    players?.forEach((player) => {
       player?.sorcerers?.forEach((sorcerer) => {
         if (sorcerer.initialPosition === selectedPiece.id) {
           sorcerer.switchHome(activePiece.parentNode.id)
-          activePiece.parentNode.classList.remove('can-move')
+          activePiece?.parentNode.classList.remove('can-move')
+          return
         }
       })
     })
+  } else if (!activePiece.parentNode.classList.contains('can-move')) {
+    const canMove = document.getElementsByClassName('can-move')[0]
+    canMove?.classList.remove('can-move')
   }
+
   return false
 }
 
@@ -38,6 +45,7 @@ const Board = ({ select, players, setPlayers }) => {
 
   const [actionBarActive, setActionBarActive] = useState(false)
   const [selectedPiece, setSelectedPiece] = useState(null)
+  const [onMove, setOnMove] = useState(false)
 
   useMemo(() => {
     for (let v = verticalAxis.length - 1; v >= 0; v--) {
@@ -132,7 +140,7 @@ const Board = ({ select, players, setPlayers }) => {
           <div
             className='container'
             onMouseDown={(e) => {
-              const grab = grabPiece(e, selectedPiece, players)
+              const grab = grabPiece(e, players, selectedPiece)
               grab.grab ? setActionBarActive(true) : setActionBarActive(false)
               if (select === 1) {
                 grab.activePiece
@@ -154,6 +162,8 @@ const Board = ({ select, players, setPlayers }) => {
               board={board}
               selectedPiece={selectedPiece}
               select={select}
+              setOnMove={setOnMove}
+              onMove={onMove}
             />
           )}
         </StyledBoard>

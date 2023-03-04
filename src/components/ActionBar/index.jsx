@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react'
 import { ActionBarStyle } from './style'
 
-const ActionBar = ({ selectedPiece, select, board, players, setPlayers }) => {
+const ActionBar = ({
+  selectedPiece,
+  select,
+  board,
+  players,
+  setPlayers,
+  onMove,
+  setOnMove,
+}) => {
   const [name, setName] = useState('Piece')
   useEffect(() => {
-    console.log(select)
     if (select === 2) {
       if (selectedPiece.id === 'e2' || selectedPiece.id === 'e5') {
         setName('Assassin')
