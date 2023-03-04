@@ -10,7 +10,7 @@ const ActionBar = ({ selectedPiece, select }) => {
         setName('Assassin')
         return
       } else if (
-        selectedPiece === 'f1' ||
+        selectedPiece === 'i1' ||
         selectedPiece === 'f2' ||
         selectedPiece === 'f4' ||
         selectedPiece === 'f5' ||
@@ -92,8 +92,8 @@ const ActionBar = ({ selectedPiece, select }) => {
   return (
     <ActionBarStyle>
       <h1>{name}</h1>
-      <button className='atk'>Ataque</button>
-      <button className='move'>Mover</button>
+      <button className="atk">Ataque</button>
+      <button className="move">Mover</button>
     </ActionBarStyle>
   )
 }

@@ -84,29 +84,29 @@ const Board = ({ select }) => {
 
       v < 3
         ? board.push(
-            <div className='home-white'>
+            <div className="home-white" i={horizontalAxis[v] + verticalAxis[h]}>
               {v < 2 ? (
                 <Piece image={image} i={horizontalAxis[v] + verticalAxis[h]} />
               ) : (
                 <></>
               )}
-            </div>
+            </div>,
           )
         : board.push(
-            <div className='home-black'>
+            <div className="home-black" i={horizontalAxis[v] + verticalAxis[h]}>
               {v > 3 ? (
                 <Piece image={image} i={horizontalAxis[v] + verticalAxis[h]} />
               ) : (
                 <></>
               )}
-            </div>
+            </div>,
           )
     }
   }
   return (
     <StyledBoard>
       <div
-        className='container'
+        className="container"
         onMouseDown={(e) => {
           const grab = grabPiece(e)
           grab.grab ? setActionBarActive(true) : setActionBarActive(false)
