@@ -114,6 +114,7 @@ const Board = ({ select, players, setPlayers }) => {
           v < 3
             ? board.push(
                 <div
+                  key={horizontalAxis[v] + verticalAxis[h]}
                   className='home-white'
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
@@ -122,6 +123,7 @@ const Board = ({ select, players, setPlayers }) => {
               )
             : board.push(
                 <div
+                  key={horizontalAxis[v] + verticalAxis[h]}
                   className='home-black'
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
