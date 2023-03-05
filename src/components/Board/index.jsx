@@ -24,6 +24,67 @@ const grabPiece = (e, players, selectedPiece) => {
     }
   } else if (activePiece.parentNode.classList.contains('can-move')) {
     players?.forEach((player) => {
+      player?.assassins?.forEach((assassin) => {
+        if (assassin.initialPosition === selectedPiece.id) {
+          assassin.switchHome(activePiece.parentNode.id)
+          activePiece?.parentNode.classList.remove('can-move')
+          const canMove = document.getElementsByClassName('can-move')
+          setTimeout(() => {
+            while (canMove.length) {
+              canMove[0].classList.remove('can-move')
+            }
+          })
+        }
+      })
+      player?.thiefs?.forEach((thief) => {
+        if (thief.initialPosition === selectedPiece.id) {
+          thief.switchHome(activePiece.parentNode.id)
+          activePiece?.parentNode.classList.remove('can-move')
+          const canMove = document.getElementsByClassName('can-move')
+          setTimeout(() => {
+            while (canMove.length) {
+              canMove[0].classList.remove('can-move')
+            }
+          })
+        }
+      })
+      player?.king?.forEach((king) => {
+        if (king.initialPosition === selectedPiece.id) {
+          king.switchHome(activePiece.parentNode.id)
+          activePiece?.parentNode.classList.remove('can-move')
+          const canMove = document.getElementsByClassName('can-move')
+          setTimeout(() => {
+            while (canMove.length) {
+              canMove[0].classList.remove('can-move')
+            }
+          })
+        }
+      })
+      player?.guardians?.forEach((guardian) => {
+        if (guardian.initialPosition === selectedPiece.id) {
+          guardian.switchHome(activePiece.parentNode.id)
+          activePiece?.parentNode.classList.remove('can-move')
+          const canMove = document.getElementsByClassName('can-move')
+          setTimeout(() => {
+            while (canMove.length) {
+              canMove[0].classList.remove('can-move')
+            }
+          })
+        }
+      })
+
+      player?.piromancers?.forEach((piromancer) => {
+        if (piromancer.initialPosition === selectedPiece.id) {
+          piromancer.switchHome(activePiece.parentNode.id)
+          activePiece?.parentNode.classList.remove('can-move')
+          const canMove = document.getElementsByClassName('can-move')
+          setTimeout(() => {
+            while (canMove.length) {
+              canMove[0].classList.remove('can-move')
+            }
+          })
+        }
+      })
       player?.sorcerers?.forEach((sorcerer) => {
         if (sorcerer.initialPosition === selectedPiece.id) {
           sorcerer.switchHome(activePiece.parentNode.id)

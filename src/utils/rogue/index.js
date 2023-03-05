@@ -2,6 +2,9 @@ import guardian from '../../assets/characters/guardian.png'
 import assassin from '../../assets/characters/assassin.png'
 import thief from '../../assets/characters/thief.png'
 import king from '../../assets/characters/kingassassin.png'
+import { moveRogue } from '../../services/moveRogue'
+import { canMove } from '../../services/validMove'
+import { moveAssassin } from '../../services/moveAssassin'
 
 export class Rogue {
   constructor(side) {
@@ -18,7 +21,7 @@ export class Rogue {
       ]
       this.assassins = [new Assassin('b2'), new Assassin('b5')]
       this.guardians = [new Guardian('b1'), new Guardian('b6')]
-      this.king = [new King('a4')]
+      this.king = [new KingRogue('a4')]
     } else {
       this.thiefs = [
         new Thief('f1'),
@@ -31,7 +34,7 @@ export class Rogue {
       ]
       this.assassins = [new Assassin('e2'), new Assassin('e5')]
       this.guardians = [new Guardian('e1'), new Guardian('e6')]
-      this.king = [new King('f3')]
+      this.king = [new KingRogue('f3')]
     }
   }
 
@@ -61,6 +64,23 @@ class Thief {
     this.alive = true
     this.img = thief
   }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveAssassin(
+      homes,
+      validateMove,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
+  }
 }
 class Assassin {
   constructor(initialPosition) {
@@ -71,6 +91,23 @@ class Assassin {
     this.health = 5
     this.alive = true
     this.img = assassin
+  }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveAssassin(
+      homes,
+      validateMove,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
   }
 }
 
@@ -84,6 +121,16 @@ class Guardian {
     this.alive = true
     this.img = guardian
   }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveRogue(homes, validateMove, board, team, direction, this.currentPosition)
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
+  }
 
   healGuardian() {
     if (this.guardian.health < 8) {
@@ -91,7 +138,7 @@ class Guardian {
     }
   }
 }
-class King {
+class KingRogue {
   constructor(initialPosition) {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
@@ -100,5 +147,15 @@ class King {
     this.health = 5
     this.alive = true
     this.img = king
+  }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveRogue(homes, validateMove, board, team, direction, this.currentPosition)
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
   }
 }

@@ -41,8 +41,11 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
       ) {
         setName('Sorcerer')
         return
-      } else if (selectedPiece.id === 'a4' || selectedPiece.id === 'f3') {
-        setName('King')
+      } else if (selectedPiece.id === 'a4') {
+        setName('KingMage')
+        return
+      } else if (selectedPiece.id === 'f3') {
+        setName('KingRogue')
         return
       }
     } else if (select === 1) {
@@ -82,8 +85,11 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
       ) {
         setName('Thief')
         return
-      } else if (selectedPiece.id === 'a4' || selectedPiece.id === 'f3') {
-        setName('King')
+      } else if (selectedPiece.id === 'a4') {
+        setName('KingRogue')
+        return
+      } else if (selectedPiece.id === 'f3') {
+        setName('KingMage')
         return
       }
     }
@@ -97,11 +103,37 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
         onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {
-              player?.sorcerers?.forEach((sorcerer) => {
-                if (sorcerer.initialPosition === selectedPiece.id) {
-                  sorcerer.move(board, select, 'up')
+              player?.king?.forEach((king) => {
+                if (king.initialPosition === selectedPiece.id) {
+                  king.move(board, select)
                 }
               })
+              player?.guardians?.forEach((guardian) => {
+                if (guardian.initialPosition === selectedPiece.id) {
+                  guardian.move(board, select)
+                }
+              })
+              player?.piromancers?.forEach((piromancer) => {
+                if (piromancer.initialPosition === selectedPiece.id) {
+                  piromancer.move(board, select)
+                }
+              })
+              player?.sorcerers?.forEach((sorcerer) => {
+                if (sorcerer.initialPosition === selectedPiece.id) {
+                  sorcerer.move(board, select)
+                }
+              })
+              player?.thiefs?.forEach((thief) => {
+                if (thief.initialPosition === selectedPiece.id) {
+                  thief.move(board, select)
+                }
+              })
+              player?.assassins?.forEach((assassin) => {
+                if (assassin.initialPosition === selectedPiece.id) {
+                  assassin.move(board, select)
+                }
+              })
+
               return player
             })
 

@@ -20,7 +20,7 @@ export class Mage {
       ]
       this.piromancers = [new Piromancer('a2'), new Piromancer('a5')]
       this.guardians = [new Guardian('b1'), new Guardian('b6')]
-      this.king = [new King('a4')]
+      this.king = [new KingMage('a4')]
     } else {
       this.sorcerers = [
         new Sorcerer('f1'),
@@ -33,7 +33,7 @@ export class Mage {
       ]
       this.piromancers = [new Piromancer('f2'), new Piromancer('f5')]
       this.guardians = [new Guardian('e1'), new Guardian('e6')]
-      this.king = [new King('f3')]
+      this.king = [new KingMage('f3')]
     }
   }
   quantityPieces() {
@@ -83,6 +83,16 @@ class Piromancer {
     this.alive = true
     this.img = pyromante
   }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveMage(homes, validateMove, board, team, direction, this.currentPosition)
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
+  }
 }
 
 class Guardian {
@@ -95,13 +105,23 @@ class Guardian {
     this.alive = true
     this.img = guardian
   }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveMage(homes, validateMove, board, team, direction, this.currentPosition)
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
+  }
   healGuardian() {
     if (this.guardian.health < 8) {
       this.guardian.health = this.guardian.health + 1
     }
   }
 }
-class King {
+class KingMage {
   constructor(initialPosition) {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
@@ -110,5 +130,15 @@ class King {
     this.health = 5
     this.alive = true
     this.img = king
+  }
+  move(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateMove = canMove(board)
+
+    moveMage(homes, validateMove, board, team, direction, this.currentPosition)
+  }
+  switchHome(newPosition) {
+    this.currentPosition = newPosition
   }
 }
