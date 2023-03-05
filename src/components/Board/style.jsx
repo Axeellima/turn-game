@@ -33,6 +33,10 @@ export const StyledBoard = styled.div`
     filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg)
       brightness(95%) contrast(80%);
   }
+  .can-attack {
+    filter: grayscale(55%) sepia(100%) brightness(34%) hue-rotate(290deg)
+      saturate(1000%) contrast(1000%);
+  }
 
   .home-white {
     width: 100px;

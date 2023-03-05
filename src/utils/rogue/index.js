@@ -5,6 +5,8 @@ import king from '../../assets/characters/kingassassin.png'
 import { moveRogue } from '../../services/moveRogue'
 import { canMove } from '../../services/validMove'
 import { moveAssassin } from '../../services/moveAssassin'
+import { canAttack } from '../../services/validAttack'
+import { attackAssassin } from '../../services/attackAssassin'
 
 export class Rogue {
   constructor(side) {
@@ -81,6 +83,23 @@ class Thief {
   switchHome(newPosition) {
     this.currentPosition = newPosition
   }
+  attack(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateAttack = canAttack(board)
+
+    attackAssassin(
+      homes,
+      validateAttack,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  attackPiece(newPosition) {
+    this.currentPosition = newPosition
+  }
 }
 class Assassin {
   constructor(initialPosition) {
@@ -109,8 +128,22 @@ class Assassin {
   switchHome(newPosition) {
     this.currentPosition = newPosition
   }
-}
+  attack(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
+    let validateAttack = canAttack(board)
+
+    attackAssassin(
+      homes,
+      validateAttack,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  attackPiece(board, piece) {}
+}
 class Guardian {
   constructor(initialPosition) {
     this.initialPosition = initialPosition
@@ -156,6 +189,23 @@ class KingRogue {
     moveRogue(homes, validateMove, board, team, direction, this.currentPosition)
   }
   switchHome(newPosition) {
+    this.currentPosition = newPosition
+  }
+  attack(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateAttack = canAttack(board)
+
+    attackAssassin(
+      homes,
+      validateAttack,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  attackPiece(newPosition) {
     this.currentPosition = newPosition
   }
 }

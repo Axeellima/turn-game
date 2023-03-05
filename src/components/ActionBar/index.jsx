@@ -97,7 +97,51 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
   return (
     <ActionBarStyle>
       <h1>{name}</h1>
-      <button className="atk">Ataque</button>
+      <button
+        className="attack"
+        onClick={(e) => {
+          setPlayers((players) => {
+            const pieces = players.map((player) => {
+              player?.king?.forEach((king) => {
+                if (king.initialPosition === selectedPiece.id) {
+                  king.attack(board, select)
+                }
+              })
+              player?.guardians?.forEach((guardian) => {
+                if (guardian.initialPosition === selectedPiece.id) {
+                  guardian.attack(board, select)
+                }
+              })
+              player?.piromancers?.forEach((piromancer) => {
+                if (piromancer.initialPosition === selectedPiece.id) {
+                  piromancer.attack(board, select)
+                }
+              })
+              player?.sorcerers?.forEach((sorcerer) => {
+                if (sorcerer.initialPosition === selectedPiece.id) {
+                  sorcerer.attack(board, select)
+                }
+              })
+              player?.thiefs?.forEach((thief) => {
+                if (thief.initialPosition === selectedPiece.id) {
+                  thief.attack(board, select)
+                }
+              })
+              player?.assassins?.forEach((assassin) => {
+                if (assassin.initialPosition === selectedPiece.id) {
+                  assassin.attack(board, select)
+                }
+              })
+
+              return player
+            })
+
+            return pieces
+          })
+        }}
+      >
+        Ataque
+      </button>
       <button
         className="move"
         onClick={(e) => {

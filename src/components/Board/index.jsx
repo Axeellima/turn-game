@@ -13,6 +13,10 @@ const grabPiece = (e, players, selectedPiece) => {
   if (activePiece.classList.contains('piece-img')) {
     activePiece.style.border = '1px solid yellow'
     const canMove = document.getElementsByClassName('can-move')
+    const canAttack = document.getElementsByClassName('can-attack')
+    while (canAttack.length) {
+      canAttack[0].classList.remove('can-attack')
+    }
     while (canMove.length) {
       canMove[0].classList.remove('can-move')
     }
@@ -95,14 +99,37 @@ const grabPiece = (e, players, selectedPiece) => {
               canMove[0].classList.remove('can-move')
             }
           })
+
           return
         }
       })
     })
-  } else if (!activePiece.parentNode.classList.contains('can-move')) {
+  } else if (activePiece.parentNode.classList.contains('can-attack')) {
+    players.forEach((player) => {
+      player?.assassins?.forEach((assassin) => {
+        if (assassin.initialPosition === selectedPiece.id) {
+          assassin.attackPiece(activePiece.parentNode.id)
+          activePiece?.parentNode.classList.remove('can-attack')
+          const canAttack = document.getElementsByClassName('can-attack')
+          setTimeout(() => {
+            while (canAttack.length) {
+              canAttack[0].classList.remove('can-attack')
+            }
+          })
+        }
+      })
+    })
+  } else if (
+    !activePiece.parentNode.classList.contains('can-move') ||
+    !activePiece.parentNode.classList.contains('can-attack')
+  ) {
     const canMove = document.getElementsByClassName('can-move')
+    const canAttack = document.getElementsByClassName('can-attack')
     while (canMove.length) {
       canMove[0].classList.remove('can-move')
+    }
+    while (canAttack.length) {
+      canAttack[0].classList.remove('can-attack')
     }
 
     return false
