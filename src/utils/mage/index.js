@@ -19,8 +19,8 @@ export class Mage {
         new Sorcerer('b5'),
       ]
       this.piromancers = [new Piromancer('a2'), new Piromancer('a5')]
-      this.guardians = [new Guardian('b1'), new Guardian('b6')]
-      this.king = [new KingMage('a4')]
+      this.guardiansMage = [new Guardian('b1'), new Guardian('b6')]
+      this.kingMage = [new KingMage('a4')]
     } else {
       this.sorcerers = [
         new Sorcerer('f1'),
@@ -32,22 +32,8 @@ export class Mage {
         new Sorcerer('e5'),
       ]
       this.piromancers = [new Piromancer('f2'), new Piromancer('f5')]
-      this.guardians = [new Guardian('e1'), new Guardian('e6')]
-      this.king = [new KingMage('f3')]
-    }
-  }
-  quantityPieces() {
-    if (this.sorcerers.length > 7) {
-      this.sorcerers = this.sorcerers.slice(0, 7)
-    }
-    if (this.piromancers.length > 2) {
-      this.piromancers = this.piromancers.slice(0, 2)
-    }
-    if (this.guardians.length > 2) {
-      this.guardians = this.guardians.slice(0, 2)
-    }
-    if (this.king.length > 1) {
-      this.king = this.king.slice(0, 1)
+      this.guardiansMage = [new Guardian('e1'), new Guardian('e6')]
+      this.kingMage = [new KingMage('f3')]
     }
   }
 }
@@ -69,8 +55,11 @@ class Sorcerer {
 
     moveMage(homes, validateMove, board, team, direction, this.currentPosition)
   }
-  switchHome(newPosition) {
-    this.currentPosition = newPosition
+  switchHome(newPosition, turn, setTurnGame) {
+    if (turn === 1) {
+      this.currentPosition = newPosition
+      return
+    }
   }
 }
 class Piromancer {
@@ -90,8 +79,11 @@ class Piromancer {
 
     moveMage(homes, validateMove, board, team, direction, this.currentPosition)
   }
-  switchHome(newPosition) {
-    this.currentPosition = newPosition
+  switchHome(newPosition, turn, setTurnGame) {
+    if (turn === 1) {
+      this.currentPosition = newPosition
+      return
+    }
   }
 }
 
@@ -112,8 +104,11 @@ class Guardian {
 
     moveMage(homes, validateMove, board, team, direction, this.currentPosition)
   }
-  switchHome(newPosition) {
-    this.currentPosition = newPosition
+  switchHome(newPosition, turn, setTurnGame) {
+    if (turn === 1) {
+      this.currentPosition = newPosition
+      return
+    }
   }
   healGuardian() {
     if (this.guardian.health < 8) {
@@ -138,7 +133,10 @@ class KingMage {
 
     moveMage(homes, validateMove, board, team, direction, this.currentPosition)
   }
-  switchHome(newPosition) {
-    this.currentPosition = newPosition
+  switchHome(newPosition, turn, setTurnGame) {
+    if (turn === 1) {
+      this.currentPosition = newPosition
+      return
+    }
   }
 }

@@ -1,10 +1,10 @@
-export const attackAssassin = (
+export const possibleAttack = (
   homes,
   canAttack,
   board,
   team,
   direction,
-  currentPosition,
+  currentPosition
 ) => {
   if (team === 1) {
     for (let i = 0; i < homes.length; i++) {
@@ -24,12 +24,10 @@ export const attackAssassin = (
             if (home.canAttack === true && home.id === possibleAttacks[j]) {
               board.forEach((home) => {
                 if (home.props.id === possibleAttacks[j]) {
-                  const homeWhite = document.getElementsByClassName(
-                    'home-black',
-                  )
-                  const homeBlack = document.getElementsByClassName(
-                    'home-white',
-                  )
+                  const homeWhite =
+                    document.getElementsByClassName('home-black')
+                  const homeBlack =
+                    document.getElementsByClassName('home-white')
                   const allHome = [...homeWhite, ...homeBlack]
                   for (let i = 0; i < allHome.length; i++) {
                     if (allHome[i].id === possibleAttacks[j]) {
@@ -63,12 +61,10 @@ export const attackAssassin = (
             if (home.canAttack === true && home.id === possibleAttacks[j]) {
               board.forEach((home) => {
                 if (home.props.id === possibleAttacks[j]) {
-                  const homeWhite = document.getElementsByClassName(
-                    'home-black',
-                  )
-                  const homeBlack = document.getElementsByClassName(
-                    'home-white',
-                  )
+                  const homeWhite =
+                    document.getElementsByClassName('home-black')
+                  const homeBlack =
+                    document.getElementsByClassName('home-white')
                   const allHome = [...homeWhite, ...homeBlack]
                   for (let i = 0; i < allHome.length; i++) {
                     if (allHome[i].id === possibleAttacks[j]) {

@@ -8,6 +8,7 @@ const BoardGame = () => {
   const [select, setSelect] = useState(null)
   const [players, setPlayers] = useState([])
   const [openModal, setOpenModal] = useState(false)
+  const [turnGame, setTurnGame] = useState(0)
 
   const handleOpenModal = () => {
     setOpenModal(!openModal)
@@ -29,6 +30,8 @@ const BoardGame = () => {
           setSelect={setSelect}
           players={players}
           setPlayers={setPlayers}
+          turnGame={turnGame}
+          setTurnGame={setTurnGame}
         />
       </Wrapper>
     </>

@@ -98,16 +98,26 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
     <ActionBarStyle>
       <h1>{name}</h1>
       <button
-        className="attack"
+        className='attack'
         onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {
-              player?.king?.forEach((king) => {
+              player?.kingMage?.forEach((king) => {
                 if (king.initialPosition === selectedPiece.id) {
                   king.attack(board, select)
                 }
               })
-              player?.guardians?.forEach((guardian) => {
+              player?.kingRogue?.forEach((king) => {
+                if (king.initialPosition === selectedPiece.id) {
+                  king.attack(board, select)
+                }
+              })
+              player?.guardiansMage?.forEach((guardian) => {
+                if (guardian.initialPosition === selectedPiece.id) {
+                  guardian.attack(board, select)
+                }
+              })
+              player?.guardiansRogue?.forEach((guardian) => {
                 if (guardian.initialPosition === selectedPiece.id) {
                   guardian.attack(board, select)
                 }
@@ -135,7 +145,6 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
 
               return player
             })
-
             return pieces
           })
         }}
@@ -143,16 +152,26 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
         Ataque
       </button>
       <button
-        className="move"
+        className='move'
         onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {
-              player?.king?.forEach((king) => {
+              player?.kingMage?.forEach((king) => {
                 if (king.initialPosition === selectedPiece.id) {
                   king.move(board, select)
                 }
               })
-              player?.guardians?.forEach((guardian) => {
+              player?.kingRogue?.forEach((king) => {
+                if (king.initialPosition === selectedPiece.id) {
+                  king.move(board, select)
+                }
+              })
+              player?.guardiansMage?.forEach((guardian) => {
+                if (guardian.initialPosition === selectedPiece.id) {
+                  guardian.move(board, select)
+                }
+              })
+              player?.guardiansRogue?.forEach((guardian) => {
                 if (guardian.initialPosition === selectedPiece.id) {
                   guardian.move(board, select)
                 }

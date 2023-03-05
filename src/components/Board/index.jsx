@@ -3,145 +3,31 @@ import { StyledBoard } from './style'
 import ActionBar from '../ActionBar'
 import { useState } from 'react'
 import { useMemo } from 'react'
+import { grabPieceFunction } from '../../services/grabPieceFunction'
 
-let activePiece = null
-const grabPiece = (e, players, selectedPiece) => {
-  if (activePiece && activePiece.classList.contains('piece-img')) {
-    activePiece.style.border = 'none'
-  }
-  activePiece = e.target
-  if (activePiece.classList.contains('piece-img')) {
-    activePiece.style.border = '1px solid yellow'
-    const canMove = document.getElementsByClassName('can-move')
-    const canAttack = document.getElementsByClassName('can-attack')
-    while (canAttack.length) {
-      canAttack[0].classList.remove('can-attack')
-    }
-    while (canMove.length) {
-      canMove[0].classList.remove('can-move')
-    }
-
-    return {
-      grab: true,
-      id: activePiece.id,
-      activePiece,
-    }
-  } else if (activePiece.parentNode.classList.contains('can-move')) {
-    players?.forEach((player) => {
-      player?.assassins?.forEach((assassin) => {
-        if (assassin.initialPosition === selectedPiece.id) {
-          assassin.switchHome(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-move')
-          const canMove = document.getElementsByClassName('can-move')
-          setTimeout(() => {
-            while (canMove.length) {
-              canMove[0].classList.remove('can-move')
-            }
-          })
-        }
-      })
-      player?.thiefs?.forEach((thief) => {
-        if (thief.initialPosition === selectedPiece.id) {
-          thief.switchHome(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-move')
-          const canMove = document.getElementsByClassName('can-move')
-          setTimeout(() => {
-            while (canMove.length) {
-              canMove[0].classList.remove('can-move')
-            }
-          })
-        }
-      })
-      player?.king?.forEach((king) => {
-        if (king.initialPosition === selectedPiece.id) {
-          king.switchHome(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-move')
-          const canMove = document.getElementsByClassName('can-move')
-          setTimeout(() => {
-            while (canMove.length) {
-              canMove[0].classList.remove('can-move')
-            }
-          })
-        }
-      })
-      player?.guardians?.forEach((guardian) => {
-        if (guardian.initialPosition === selectedPiece.id) {
-          guardian.switchHome(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-move')
-          const canMove = document.getElementsByClassName('can-move')
-          setTimeout(() => {
-            while (canMove.length) {
-              canMove[0].classList.remove('can-move')
-            }
-          })
-        }
-      })
-
-      player?.piromancers?.forEach((piromancer) => {
-        if (piromancer.initialPosition === selectedPiece.id) {
-          piromancer.switchHome(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-move')
-          const canMove = document.getElementsByClassName('can-move')
-          setTimeout(() => {
-            while (canMove.length) {
-              canMove[0].classList.remove('can-move')
-            }
-          })
-        }
-      })
-      player?.sorcerers?.forEach((sorcerer) => {
-        if (sorcerer.initialPosition === selectedPiece.id) {
-          sorcerer.switchHome(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-move')
-          const canMove = document.getElementsByClassName('can-move')
-          setTimeout(() => {
-            while (canMove.length) {
-              canMove[0].classList.remove('can-move')
-            }
-          })
-
-          return
-        }
-      })
-    })
-  } else if (activePiece.parentNode.classList.contains('can-attack')) {
-    players.forEach((player) => {
-      player?.assassins?.forEach((assassin) => {
-        if (assassin.initialPosition === selectedPiece.id) {
-          assassin.attackPiece(activePiece.parentNode.id)
-          activePiece?.parentNode.classList.remove('can-attack')
-          const canAttack = document.getElementsByClassName('can-attack')
-          setTimeout(() => {
-            while (canAttack.length) {
-              canAttack[0].classList.remove('can-attack')
-            }
-          })
-        }
-      })
-    })
-  } else if (
-    !activePiece.parentNode.classList.contains('can-move') ||
-    !activePiece.parentNode.classList.contains('can-attack')
-  ) {
-    const canMove = document.getElementsByClassName('can-move')
-    const canAttack = document.getElementsByClassName('can-attack')
-    while (canMove.length) {
-      canMove[0].classList.remove('can-move')
-    }
-    while (canAttack.length) {
-      canAttack[0].classList.remove('can-attack')
-    }
-
-    return false
-  }
-
-  return false
+const grabPiece = (
+  e,
+  players,
+  selectedPiece,
+  setPlayers,
+  turnGame,
+  setTurnGame
+) => {
+  const grab = grabPieceFunction(
+    e,
+    players,
+    selectedPiece,
+    setPlayers,
+    turnGame,
+    setTurnGame
+  )
+  return grab
 }
 
 const verticalAxis = ['1', '2', '3', '4', '5', '6']
 const horizontalAxis = ['a', 'b', 'c', 'd', 'e', 'f']
 
-const Board = ({ select, players, setPlayers }) => {
+const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
   let board = []
 
   const [actionBarActive, setActionBarActive] = useState(false)
@@ -153,6 +39,7 @@ const Board = ({ select, players, setPlayers }) => {
       for (let h = 0; h < horizontalAxis.length; h++) {
         let image = undefined
         let id = undefined
+        let name = undefined
 
         if (players.length > 0) {
           players.forEach((player) => {
@@ -161,8 +48,11 @@ const Board = ({ select, players, setPlayers }) => {
                 piece.currentPosition ===
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
-                image = piece.img
-                id = piece.initialPosition
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'thief'
+                }
               }
             })
             player.assassins?.forEach((piece) => {
@@ -170,17 +60,35 @@ const Board = ({ select, players, setPlayers }) => {
                 piece.currentPosition ===
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
-                image = piece.img
-                id = piece.initialPosition
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'assassin'
+                }
               }
             })
-            player.guardians?.forEach((piece) => {
+            player.guardiansRogue?.forEach((piece) => {
               if (
                 piece.currentPosition ===
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
-                image = piece.img
-                id = piece.initialPosition
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'guardianRogue'
+                }
+              }
+            })
+            player.guardiansMage?.forEach((piece) => {
+              if (
+                piece.currentPosition ===
+                `${horizontalAxis[v] + verticalAxis[h]}`
+              ) {
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'guardianMage'
+                }
               }
             })
             player.sorcerers?.forEach((piece) => {
@@ -188,8 +96,11 @@ const Board = ({ select, players, setPlayers }) => {
                 piece.currentPosition ===
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
-                image = piece.img
-                id = piece.initialPosition
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'sorcerer'
+                }
               }
             })
             player.piromancers?.forEach((piece) => {
@@ -197,17 +108,35 @@ const Board = ({ select, players, setPlayers }) => {
                 piece.currentPosition ===
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
-                image = piece.img
-                id = piece.initialPosition
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'piromancer'
+                }
               }
             })
-            player.king?.forEach((piece) => {
+            player.kingMage?.forEach((piece) => {
               if (
                 piece.currentPosition ===
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
-                image = piece.img
-                id = piece.initialPosition
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'kingMage'
+                }
+              }
+            })
+            player.kingRogue?.forEach((piece) => {
+              if (
+                piece.currentPosition ===
+                `${horizontalAxis[v] + verticalAxis[h]}`
+              ) {
+                if (piece.health > 0) {
+                  image = piece.img
+                  id = piece.initialPosition
+                  name = 'kingRogue'
+                }
               }
             })
           })
@@ -216,20 +145,20 @@ const Board = ({ select, players, setPlayers }) => {
             ? board.push(
                 <div
                   key={horizontalAxis[v] + verticalAxis[h]}
-                  className="home-white"
+                  className='home-white'
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece image={image} i={id} />
-                </div>,
+                  <Piece image={image} i={id} name={name} />
+                </div>
               )
             : board.push(
                 <div
                   key={horizontalAxis[v] + verticalAxis[h]}
-                  className="home-black"
+                  className='home-black'
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece image={image} i={id} />
-                </div>,
+                  <Piece image={image} i={id} name={name} />
+                </div>
               )
         }
       }
@@ -241,9 +170,16 @@ const Board = ({ select, players, setPlayers }) => {
       {board.length > 0 ? (
         <StyledBoard>
           <div
-            className="container"
+            className='container'
             onMouseDown={(e) => {
-              const grab = grabPiece(e, players, selectedPiece)
+              const grab = grabPiece(
+                e,
+                players,
+                selectedPiece,
+                setPlayers,
+                turnGame,
+                setTurnGame
+              )
               grab.grab ? setActionBarActive(true) : setActionBarActive(false)
               if (select === 1) {
                 grab.activePiece
