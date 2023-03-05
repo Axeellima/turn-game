@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ActionBarStyle } from './style'
 
-const ActionBar = ({
-  selectedPiece,
-  select,
-  board,
-  players,
-  setPlayers,
-  onMove,
-  setOnMove,
-}) => {
+const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
   const [name, setName] = useState('Piece')
   useEffect(() => {
     if (select === 2) {
@@ -99,9 +91,9 @@ const ActionBar = ({
   return (
     <ActionBarStyle>
       <h1>{name}</h1>
-      <button className='atk'>Ataque</button>
+      <button className="atk">Ataque</button>
       <button
-        className='move'
+        className="move"
         onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {

@@ -3,6 +3,7 @@ import king from '../../assets/characters/mage.png'
 import pyromante from '../../assets/characters/pyro.png'
 import sorcerer from '../../assets/characters/kingmage.png'
 import { moveMage } from '../../services/moveMage'
+import { canMove } from '../../services/validMove'
 
 export class Mage {
   constructor(side) {
@@ -64,21 +65,9 @@ class Sorcerer {
   move(board, team, direction) {
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
-    let canMove = board?.map((home) => {
-      if (home.props.children.props.image !== undefined) {
-        return {
-          home: home,
-          id: home.props.id,
-          canMove: false,
-        }
-      }
-      return {
-        home: home,
-        id: home.props.id,
-        canMove: true,
-      }
-    })
-    moveMage(homes, canMove, board, team, direction, this.currentPosition)
+    let validateMove = canMove(board)
+
+    moveMage(homes, validateMove, board, team, direction, this.currentPosition)
   }
   switchHome(newPosition) {
     this.currentPosition = newPosition

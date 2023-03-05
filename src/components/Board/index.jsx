@@ -12,8 +12,11 @@ const grabPiece = (e, players, selectedPiece) => {
   activePiece = e.target
   if (activePiece.classList.contains('piece-img')) {
     activePiece.style.border = '1px solid yellow'
-    const canMove = document.getElementsByClassName('can-move')[0]
-    canMove?.classList.remove('can-move')
+    const canMove = document.getElementsByClassName('can-move')
+    while (canMove.length) {
+      canMove[0].classList.remove('can-move')
+    }
+
     return {
       grab: true,
       id: activePiece.id,
@@ -25,13 +28,23 @@ const grabPiece = (e, players, selectedPiece) => {
         if (sorcerer.initialPosition === selectedPiece.id) {
           sorcerer.switchHome(activePiece.parentNode.id)
           activePiece?.parentNode.classList.remove('can-move')
+          const canMove = document.getElementsByClassName('can-move')
+          setTimeout(() => {
+            while (canMove.length) {
+              canMove[0].classList.remove('can-move')
+            }
+          })
           return
         }
       })
     })
   } else if (!activePiece.parentNode.classList.contains('can-move')) {
-    const canMove = document.getElementsByClassName('can-move')[0]
-    canMove?.classList.remove('can-move')
+    const canMove = document.getElementsByClassName('can-move')
+    while (canMove.length) {
+      canMove[0].classList.remove('can-move')
+    }
+
+    return false
   }
 
   return false
@@ -115,20 +128,20 @@ const Board = ({ select, players, setPlayers }) => {
             ? board.push(
                 <div
                   key={horizontalAxis[v] + verticalAxis[h]}
-                  className='home-white'
+                  className="home-white"
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
                   <Piece image={image} i={id} />
-                </div>
+                </div>,
               )
             : board.push(
                 <div
                   key={horizontalAxis[v] + verticalAxis[h]}
-                  className='home-black'
+                  className="home-black"
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
                   <Piece image={image} i={id} />
-                </div>
+                </div>,
               )
         }
       }
@@ -140,7 +153,7 @@ const Board = ({ select, players, setPlayers }) => {
       {board.length > 0 ? (
         <StyledBoard>
           <div
-            className='container'
+            className="container"
             onMouseDown={(e) => {
               const grab = grabPiece(e, players, selectedPiece)
               grab.grab ? setActionBarActive(true) : setActionBarActive(false)
