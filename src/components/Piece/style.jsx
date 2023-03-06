@@ -14,4 +14,15 @@ export const PieceStyle = styled.div`
   .${(props) => props.i} {
     border: 1px solid yellow;
   }
+  h1 {
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    color: white;
+    font-size: 16px;
+    background-color: rgba(15, 15, 15, 0.5);
+    border-radius: 100%;
+    position: relative;
+    bottom: 100px;
+  }
 `

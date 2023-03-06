@@ -98,7 +98,7 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
     <ActionBarStyle>
       <h1>{name}</h1>
       <button
-        className='attack'
+        className="attack"
         onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {
@@ -152,7 +152,7 @@ const ActionBar = ({ selectedPiece, select, board, setPlayers }) => {
         Ataque
       </button>
       <button
-        className='move'
+        className="move"
         onClick={(e) => {
           setPlayers((players) => {
             const pieces = players.map((player) => {

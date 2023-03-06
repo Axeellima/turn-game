@@ -1,4 +1,4 @@
-export const possibleAttack = (
+export const possibleKingMageAttack = (
   homes,
   canAttack,
   board,
@@ -18,6 +18,11 @@ export const possibleAttack = (
           homes[i + 1] + (Number(currentPosition.split('')[1]) - 1),
           homes[i - 1] + (Number(currentPosition.split('')[1]) + 1),
           homes[i - 1] + (Number(currentPosition.split('')[1]) - 1),
+
+          homes[i + 2] + currentPosition.split('')[1],
+          homes[i - 2] + currentPosition.split('')[1],
+          homes[i] + (Number(currentPosition.split('')[1]) - 2),
+          homes[i] + (Number(currentPosition.split('')[1]) + 2),
         ]
         for (let j = 0; j <= possibleAttacks.length; j++) {
           canAttack.find((home) => {
@@ -57,6 +62,11 @@ export const possibleAttack = (
           homes[i - 1] + (Number(currentPosition.split('')[1]) - 1),
           homes[i + 1] + (Number(currentPosition.split('')[1]) + 1),
           homes[i + 1] + (Number(currentPosition.split('')[1]) - 1),
+
+          homes[i - 2] + currentPosition.split('')[1],
+          homes[i + 2] + currentPosition.split('')[1],
+          homes[i] - (Number(currentPosition.split('')[1]) - 2),
+          homes[i] - (Number(currentPosition.split('')[1]) + 2),
         ]
         for (let j = 0; j < possibleAttacks.length; j++) {
           canAttack.find((home) => {

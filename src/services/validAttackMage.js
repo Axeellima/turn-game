@@ -1,4 +1,4 @@
-export const canAttackRogue = (board) => {
+export const canAttackMage = (board) => {
   return board?.map((home) => {
     if (
       home.props.children.props.name === 'thief' ||

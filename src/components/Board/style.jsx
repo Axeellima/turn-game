@@ -30,12 +30,10 @@ export const StyledBoard = styled.div`
     background-size: 100%;
   }
   .can-move {
-    filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg)
-      brightness(95%) contrast(80%);
+    box-shadow: inset 0px 0px 50px 5px #00ff0f;
   }
   .can-attack {
-    filter: grayscale(55%) sepia(100%) brightness(34%) hue-rotate(290deg)
-      saturate(1000%) contrast(1000%);
+    box-shadow: inset 0px 0px 50px 5px #ff0000;
   }
 
   .home-white {

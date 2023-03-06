@@ -11,7 +11,7 @@ const grabPiece = (
   selectedPiece,
   setPlayers,
   turnGame,
-  setTurnGame
+  setTurnGame,
 ) => {
   const grab = grabPieceFunction(
     e,
@@ -19,7 +19,7 @@ const grabPiece = (
     selectedPiece,
     setPlayers,
     turnGame,
-    setTurnGame
+    setTurnGame,
   )
   return grab
 }
@@ -40,6 +40,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
         let image = undefined
         let id = undefined
         let name = undefined
+        let health = undefined
 
         if (players.length > 0) {
           players.forEach((player) => {
@@ -49,6 +50,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'thief'
@@ -61,6 +63,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'assassin'
@@ -73,6 +76,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'guardianRogue'
@@ -85,6 +89,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'guardianMage'
@@ -97,6 +102,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'sorcerer'
@@ -109,6 +115,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'piromancer'
@@ -121,6 +128,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'kingMage'
@@ -133,6 +141,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 `${horizontalAxis[v] + verticalAxis[h]}`
               ) {
                 if (piece.health > 0) {
+                  health = piece.health
                   image = piece.img
                   id = piece.initialPosition
                   name = 'kingRogue'
@@ -145,20 +154,20 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
             ? board.push(
                 <div
                   key={horizontalAxis[v] + verticalAxis[h]}
-                  className='home-white'
+                  className="home-white"
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece image={image} i={id} name={name} />
-                </div>
+                  <Piece image={image} i={id} name={name} health={health} />
+                </div>,
               )
             : board.push(
                 <div
                   key={horizontalAxis[v] + verticalAxis[h]}
-                  className='home-black'
+                  className="home-black"
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece image={image} i={id} name={name} />
-                </div>
+                  <Piece image={image} i={id} name={name} health={health} />
+                </div>,
               )
         }
       }
@@ -170,7 +179,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
       {board.length > 0 ? (
         <StyledBoard>
           <div
-            className='container'
+            className="container"
             onMouseDown={(e) => {
               const grab = grabPiece(
                 e,
@@ -178,7 +187,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                 selectedPiece,
                 setPlayers,
                 turnGame,
-                setTurnGame
+                setTurnGame,
               )
               grab.grab ? setActionBarActive(true) : setActionBarActive(false)
               if (select === 1) {

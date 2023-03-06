@@ -1,9 +1,14 @@
 import guardian from '../../assets/characters/guardian.png'
 import king from '../../assets/characters/mage.png'
 import pyromante from '../../assets/characters/pyro.png'
-import sorcerer from '../../assets/characters/kingmage.png'
+import sorcerer from '../../assets/characters/kingmage.gif'
 import { moveMage } from '../../services/moveMage'
 import { canMove } from '../../services/validMove'
+import { possibleSorcererAttack } from '../../services/possibleSorcererAttack'
+import { canAttackMage } from '../../services/validAttackMage'
+import { possiblePiromancerAttack } from '../../services/possiblePiromancerAttack'
+import { possibleKingMageAttack } from '../../services/possibleKingMageAttack'
+import { attackPiecePiromancer } from '../../services/attackPiecePiromancer'
 
 export class Mage {
   constructor(side) {
@@ -43,7 +48,7 @@ class Sorcerer {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
     this.typeMove = 1
-    this.damage = 1
+    this.damage = 1.5
     this.health = 5
     this.alive = true
     this.img = sorcerer
@@ -61,13 +66,62 @@ class Sorcerer {
       return
     }
   }
+  attack(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateAttack = canAttackMage(board)
+
+    possibleSorcererAttack(
+      homes,
+      validateAttack,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  attackPiece(setPlayers, piece, turn) {
+    if (turn === 1) {
+      setTimeout(() => {
+        setPlayers((players) => {
+          return players.map((player) => {
+            player.kingRogue?.forEach((king) => {
+              if (king.initialPosition === piece) {
+                king.health = king.health - this.damage
+              }
+            })
+            player.guardiansRogue?.forEach((guardian) => {
+              if (guardian.initialPosition === piece) {
+                guardian.health = guardian.health - this.damage
+              }
+            })
+            player.assassins?.forEach((assassin) => {
+              if (assassin.initialPosition === piece) {
+                assassin.health = assassin.health - this.damage
+              }
+            })
+            player.thiefs?.forEach((thief) => {
+              if (thief.initialPosition === piece) {
+                thief.health = thief.health - this.damage
+                console.log(thief.health)
+              }
+            })
+
+            return player
+          })
+        })
+        return null
+      })
+    }
+    return
+  }
 }
 class Piromancer {
   constructor(initialPosition) {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
     this.typeMove = 1
-    this.damage = 2
+    this.damage = 3
     this.health = 5
     this.alive = true
     this.img = pyromante
@@ -84,6 +138,26 @@ class Piromancer {
       this.currentPosition = newPosition
       return
     }
+  }
+  attack(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateAttack = canAttackMage(board)
+
+    possiblePiromancerAttack(
+      homes,
+      validateAttack,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  attackPiece(setPlayers, piece, turn, players) {
+    if (turn === 1) {
+      attackPiecePiromancer(players, setPlayers, piece, this.damage)
+    }
+    return
   }
 }
 
@@ -121,7 +195,7 @@ class KingMage {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
     this.typeMove = 1
-    this.damage = 2
+    this.damage = 3
     this.health = 5
     this.alive = true
     this.img = king
@@ -138,5 +212,54 @@ class KingMage {
       this.currentPosition = newPosition
       return
     }
+  }
+  attack(board, team, direction) {
+    let homes = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    let validateAttack = canAttackMage(board)
+
+    possibleKingMageAttack(
+      homes,
+      validateAttack,
+      board,
+      team,
+      direction,
+      this.currentPosition,
+    )
+  }
+  attackPiece(setPlayers, piece, turn) {
+    if (turn === 1) {
+      setTimeout(() => {
+        setPlayers((players) => {
+          return players.map((player) => {
+            player.kingRogue?.forEach((king) => {
+              if (king.initialPosition === piece) {
+                king.health = king.health - this.damage
+              }
+            })
+            player.guardiansRogue?.forEach((guardian) => {
+              if (guardian.initialPosition === piece) {
+                guardian.health = guardian.health - this.damage
+              }
+            })
+            player.assassins?.forEach((assassin) => {
+              if (assassin.initialPosition === piece) {
+                assassin.health = assassin.health - this.damage
+              }
+            })
+            player.thiefs?.forEach((thief) => {
+              if (thief.initialPosition === piece) {
+                thief.health = thief.health - this.damage
+                console.log(thief.health)
+                console.log('dmg')
+              }
+            })
+            return player
+          })
+        })
+        return null
+      })
+    }
+    return
   }
 }

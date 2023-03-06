@@ -5,7 +5,7 @@ export const grabPieceFunction = (
   selectedPiece,
   setPlayers,
   turnGame,
-  setTurnGame
+  setTurnGame,
 ) => {
   if (activePiece && activePiece.classList.contains('piece-img')) {
     activePiece.style.border = 'none'
@@ -146,7 +146,12 @@ export const grabPieceFunction = (
     players.forEach((player) => {
       player?.assassins?.forEach((assassin) => {
         if (assassin.initialPosition === selectedPiece.id) {
-          assassin.attackPiece(setPlayers, activePiece.parentNode.id, turnGame)
+          assassin.attackPiece(
+            setPlayers,
+            activePiece.parentNode.id,
+            turnGame,
+            players,
+          )
 
           activePiece?.parentNode.classList.remove('can-attack')
           const canAttack = document.getElementsByClassName('can-attack')
@@ -167,8 +172,65 @@ export const grabPieceFunction = (
             while (canAttack.length) {
               canAttack[0].classList.remove('can-attack')
             }
-            console.log('pinto')
+
             setTurnGame(1)
+          })
+        }
+      })
+      player?.kingRogue?.forEach((king) => {
+        if (king.initialPosition === selectedPiece.id) {
+          king.attackPiece(setPlayers, activePiece.parentNode.id, turnGame)
+          activePiece?.parentNode.classList.remove('can-attack')
+          const canAttack = document.getElementsByClassName('can-attack')
+          setTimeout(() => {
+            while (canAttack.length) {
+              canAttack[0].classList.remove('can-attack')
+            }
+            setTurnGame(1)
+          })
+        }
+      })
+      player?.sorcerers?.forEach((sorcerer) => {
+        if (sorcerer.initialPosition === selectedPiece.id) {
+          sorcerer.attackPiece(setPlayers, activePiece.parentNode.id, turnGame)
+          activePiece?.parentNode.classList.remove('can-attack')
+          const canAttack = document.getElementsByClassName('can-attack')
+          setTimeout(() => {
+            while (canAttack.length) {
+              canAttack[0].classList.remove('can-attack')
+            }
+            setTurnGame(0)
+          })
+        }
+      })
+      player?.piromancers?.forEach((piromancer) => {
+        if (piromancer.initialPosition === selectedPiece.id) {
+          piromancer.attackPiece(
+            setPlayers,
+            activePiece.parentNode.id,
+            turnGame,
+            players,
+          )
+          activePiece?.parentNode.classList.remove('can-attack')
+          const canAttack = document.getElementsByClassName('can-attack')
+          setTimeout(() => {
+            while (canAttack.length) {
+              canAttack[0].classList.remove('can-attack')
+            }
+            setTurnGame(0)
+          })
+        }
+      })
+      player?.kingMage?.forEach((king) => {
+        if (king.initialPosition === selectedPiece.id) {
+          king.attackPiece(setPlayers, activePiece.parentNode.id, turnGame)
+          activePiece?.parentNode.classList.remove('can-attack')
+          const canAttack = document.getElementsByClassName('can-attack')
+          setTimeout(() => {
+            while (canAttack.length) {
+              canAttack[0].classList.remove('can-attack')
+            }
+            setTurnGame(0)
           })
         }
       })
