@@ -7,6 +7,7 @@ export const PieceStyle = styled.div`
   .piece-img {
     width: 100px;
     height: 100px;
+    display: block;
   }
   .piece-img:hover {
     cursor: grab;
@@ -24,5 +25,15 @@ export const PieceStyle = styled.div`
     border-radius: 100%;
     position: relative;
     bottom: 100px;
+  }
+  .attack {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    bottom: 120px;
+    display: block;
+  }
+  img {
+    display: none;
   }
 `

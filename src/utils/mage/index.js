@@ -2,6 +2,8 @@ import guardian from '../../assets/characters/guardian.png'
 import king from '../../assets/characters/mage.png'
 import pyromante from '../../assets/characters/pyro.png'
 import sorcerer from '../../assets/characters/kingmage.gif'
+import sorcererAttack from '../../assets/attacks/sorcererAtk.gif'
+import thiefAttack from '../../assets/attacks/rogueAttack.gif'
 import { moveMage } from '../../services/moveMage'
 import { canMove } from '../../services/validMove'
 import { possibleSorcererAttack } from '../../services/possibleSorcererAttack'
@@ -9,6 +11,7 @@ import { canAttackMage } from '../../services/validAttackMage'
 import { possiblePiromancerAttack } from '../../services/possiblePiromancerAttack'
 import { possibleKingMageAttack } from '../../services/possibleKingMageAttack'
 import { attackPiecePiromancer } from '../../services/attackPiecePiromancer'
+import { validGameOver } from '../../services/validGameOver'
 
 export class Mage {
   constructor(side) {
@@ -52,8 +55,13 @@ class Sorcerer {
     this.health = 5
     this.alive = true
     this.img = sorcerer
+    this.attackedPiece = undefined
   }
   move(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
+
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateMove = canMove(board)
@@ -67,6 +75,10 @@ class Sorcerer {
     }
   }
   attack(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
+
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateAttack = canAttackMage(board)
@@ -88,22 +100,57 @@ class Sorcerer {
             player.kingRogue?.forEach((king) => {
               if (king.initialPosition === piece) {
                 king.health = king.health - this.damage
+                king.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             player.guardiansRogue?.forEach((guardian) => {
               if (guardian.initialPosition === piece) {
                 guardian.health = guardian.health - this.damage
+                guardian.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             player.assassins?.forEach((assassin) => {
               if (assassin.initialPosition === piece) {
                 assassin.health = assassin.health - this.damage
+                assassin.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             player.thiefs?.forEach((thief) => {
               if (thief.initialPosition === piece) {
                 thief.health = thief.health - this.damage
-                console.log(thief.health)
+                thief.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
 
@@ -125,8 +172,12 @@ class Piromancer {
     this.health = 5
     this.alive = true
     this.img = pyromante
+    this.attackedPiece = undefined
   }
   move(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateMove = canMove(board)
@@ -140,6 +191,9 @@ class Piromancer {
     }
   }
   attack(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateAttack = canAttackMage(board)
@@ -170,8 +224,12 @@ class Guardian {
     this.health = 8
     this.alive = true
     this.img = guardian
+    this.attackedPiece = undefined
   }
   move(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateMove = canMove(board)
@@ -199,8 +257,13 @@ class KingMage {
     this.health = 5
     this.alive = true
     this.img = king
+    this.attackedPiece = undefined
   }
+
   move(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateMove = canMove(board)
@@ -213,7 +276,15 @@ class KingMage {
       return
     }
   }
+
+  gameOver(board, team, health) {
+    validGameOver(board, team, health)
+  }
+
   attack(board, team, direction) {
+    if (this.attackedPiece) {
+      this.attackedPiece = undefined
+    }
     let homes = ['a', 'b', 'c', 'd', 'e', 'f']
 
     let validateAttack = canAttackMage(board)
@@ -235,23 +306,57 @@ class KingMage {
             player.kingRogue?.forEach((king) => {
               if (king.initialPosition === piece) {
                 king.health = king.health - this.damage
+                king.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             player.guardiansRogue?.forEach((guardian) => {
               if (guardian.initialPosition === piece) {
                 guardian.health = guardian.health - this.damage
+                guardian.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             player.assassins?.forEach((assassin) => {
               if (assassin.initialPosition === piece) {
                 assassin.health = assassin.health - this.damage
+                assassin.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             player.thiefs?.forEach((thief) => {
               if (thief.initialPosition === piece) {
                 thief.health = thief.health - this.damage
-                console.log(thief.health)
-                console.log('dmg')
+                thief.attackedPiece = sorcererAttack
+                if (sorcererAttack) {
+                  let attack = document.getElementsByClassName('attack')
+                  setTimeout(() => {
+                    for (let i = -3; i < sorcererAttack.length; i++) {
+                      attack[0].classList.remove('attack')
+                    }
+                  }, 1000)
+                }
               }
             })
             return player

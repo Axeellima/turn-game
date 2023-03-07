@@ -4,6 +4,7 @@ import ActionBar from '../ActionBar'
 import { useState } from 'react'
 import { useMemo } from 'react'
 import { grabPieceFunction } from '../../services/grabPieceFunction'
+import musicTheme from '../../assets/music/musicTheme.mp3'
 
 const grabPiece = (
   e,
@@ -27,7 +28,15 @@ const grabPiece = (
 const verticalAxis = ['1', '2', '3', '4', '5', '6']
 const horizontalAxis = ['a', 'b', 'c', 'd', 'e', 'f']
 
-const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
+const Board = ({
+  select,
+  players,
+  setPlayers,
+  turnGame,
+  setTurnGame,
+  setWinner,
+  setGameOver,
+}) => {
   let board = []
 
   const [actionBarActive, setActionBarActive] = useState(false)
@@ -41,6 +50,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
         let id = undefined
         let name = undefined
         let health = undefined
+        let attackedPiece = undefined
 
         if (players.length > 0) {
           players.forEach((player) => {
@@ -54,6 +64,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'thief'
+                  attackedPiece = piece.attackedPiece
                 }
               }
             })
@@ -67,6 +78,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'assassin'
+                  attackedPiece = piece.attackedPiece
                 }
               }
             })
@@ -80,6 +92,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'guardianRogue'
+                  attackedPiece = piece.attackedPiece
                 }
               }
             })
@@ -93,6 +106,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'guardianMage'
+                  attackedPiece = piece.attackedPiece
                 }
               }
             })
@@ -106,6 +120,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'sorcerer'
+                  attackedPiece = piece.attackedPiece
                 }
               }
             })
@@ -119,6 +134,7 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'piromancer'
+                  attackedPiece = piece.attackedPiece
                 }
               }
             })
@@ -132,6 +148,12 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'kingMage'
+                  attackedPiece = piece.attackedPiece
+                } else if (piece.health <= 0) {
+                  setTimeout(() => {
+                    setWinner('Rogue')
+                    setGameOver(true)
+                  }, 1000)
                 }
               }
             })
@@ -145,6 +167,12 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   image = piece.img
                   id = piece.initialPosition
                   name = 'kingRogue'
+                  attackedPiece = piece.attackedPiece
+                } else if (piece.health <= 0) {
+                  setTimeout(() => {
+                    setWinner('Mage')
+                    setGameOver(true)
+                  }, 1000)
                 }
               }
             })
@@ -157,7 +185,13 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   className="home-white"
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece image={image} i={id} name={name} health={health} />
+                  <Piece
+                    image={image}
+                    i={id}
+                    name={name}
+                    health={health}
+                    attackedPiece={attackedPiece}
+                  />
                 </div>,
               )
             : board.push(
@@ -166,7 +200,13 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
                   className="home-black"
                   id={horizontalAxis[v] + verticalAxis[h]}
                 >
-                  <Piece image={image} i={id} name={name} health={health} />
+                  <Piece
+                    image={image}
+                    i={id}
+                    name={name}
+                    health={health}
+                    attackedPiece={attackedPiece}
+                  />
                 </div>,
               )
         }
@@ -201,6 +241,8 @@ const Board = ({ select, players, setPlayers, turnGame, setTurnGame }) => {
               }
             }}
           >
+            <audio src={musicTheme} id="music-theme" autoPlay />
+
             {board}
           </div>
           {actionBarActive && (

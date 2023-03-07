@@ -1,3 +1,4 @@
+import assassinAttack from '../assets/attacks/assassinAtk.gif'
 export const attackPieceAssassin = (players, setPlayers, piece, damage) => {
   let sideRight = null
   let sideLeft = null
@@ -50,48 +51,91 @@ export const attackPieceAssassin = (players, setPlayers, piece, damage) => {
         player.kingMage?.forEach((king) => {
           if (king.initialPosition === piece) {
             king.health = king.health - damage
+            king.attackedPiece = assassinAttack
+            if (assassinAttack) {
+              let attack = document.getElementsByClassName('attack')
+              setTimeout(() => {
+                for (let i = -3; i < assassinAttack.length; i++) {
+                  attack[0].classList.remove('attack')
+                }
+              }, 1000)
+            }
           }
           if (king.currentPosition === sideRight) {
             king.health = king.health - 1
+            king.attackedPiece = assassinAttack
           }
           if (king.currentPosition === sideLeft) {
             king.health = king.health - 1
+            king.attackedPiece = assassinAttack
           }
         })
         player.guardiansMage?.forEach((guardian) => {
           if (guardian.initialPosition === piece) {
             guardian.health = guardian.health - damage
+            guardian.attackedPiece = assassinAttack
+            if (assassinAttack) {
+              let attack = document.getElementsByClassName('attack')
+              setTimeout(() => {
+                for (let i = -3; i < assassinAttack.length; i++) {
+                  attack[0].classList.remove('attack')
+                }
+              }, 1000)
+            }
           }
           if (guardian.currentPosition === sideRight) {
             guardian.health = guardian.health - 1
+            guardian.attackedPiece = assassinAttack
           }
           if (guardian.currentPosition === sideLeft) {
             guardian.health = guardian.health - 1
+            guardian.attackedPiece = assassinAttack
           }
         })
         player.piromancers?.forEach((piromancer) => {
           if (piromancer.initialPosition === piece) {
             piromancer.health = piromancer.health - damage
+            piromancer.attackedPiece = assassinAttack
+            if (assassinAttack) {
+              let attack = document.getElementsByClassName('attack')
+              setTimeout(() => {
+                for (let i = -3; i < assassinAttack.length; i++) {
+                  attack[0].classList.remove('attack')
+                }
+              }, 1000)
+            }
           }
           if (piromancer.currentPosition === sideRight) {
             piromancer.health = piromancer.health - 1
+            piromancer.attackedPiece = assassinAttack
           }
           if (piromancer.currentPosition === sideLeft) {
             piromancer.health = piromancer.health - 1
+            piromancer.attackedPiece = assassinAttack
           }
         })
+
         player.sorcerers?.forEach((sorcerer) => {
           if (sorcerer.initialPosition === piece) {
             sorcerer.health = sorcerer.health - damage
-            console.log(sorcerer)
+            sorcerer.attackedPiece = assassinAttack
+
+            if (assassinAttack) {
+              let attack = document.getElementsByClassName('attack')
+              setTimeout(() => {
+                for (let i = -3; i < assassinAttack.length; i++) {
+                  attack[0].classList.remove('attack')
+                }
+              }, 1000)
+            }
           }
           if (sorcerer.currentPosition === sideRight) {
             sorcerer.health = sorcerer.health - 1
-            console.log(sorcerer)
+            sorcerer.attackedPiece = assassinAttack
           }
           if (sorcerer.currentPosition === sideLeft) {
             sorcerer.health = sorcerer.health - 1
-            console.log(sorcerer)
+            sorcerer.attackedPiece = assassinAttack
           }
         })
         return player

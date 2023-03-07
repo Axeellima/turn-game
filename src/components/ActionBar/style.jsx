@@ -30,7 +30,7 @@ export const ActionBarStyle = styled.div`
     transform: scale(1.1);
     border: 4px solid white;
   }
-  .attack {
+  .attack-piece {
     background-color: #b22222bf;
   }
   .move {
