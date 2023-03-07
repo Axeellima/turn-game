@@ -78,7 +78,7 @@ export const attackPiecePiromancer = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < piromancerAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }
@@ -100,7 +100,7 @@ export const attackPiecePiromancer = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < piromancerAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }
@@ -122,7 +122,7 @@ export const attackPiecePiromancer = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < piromancerAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }

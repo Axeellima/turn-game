@@ -56,7 +56,7 @@ export const attackPieceAssassin = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < assassinAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }
@@ -78,7 +78,7 @@ export const attackPieceAssassin = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < assassinAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }
@@ -100,7 +100,7 @@ export const attackPieceAssassin = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < assassinAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }
@@ -124,7 +124,7 @@ export const attackPieceAssassin = (players, setPlayers, piece, damage) => {
               let attack = document.getElementsByClassName('attack')
               setTimeout(() => {
                 for (let i = -3; i < assassinAttack.length; i++) {
-                  attack[0].classList.remove('attack')
+                  attack[0]?.classList.remove('attack')
                 }
               }, 1000)
             }

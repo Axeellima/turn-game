@@ -68,7 +68,7 @@ class Thief {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   switchHome(newPosition, turn, setTurnGame) {
@@ -91,7 +91,7 @@ class Thief {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   async attackPiece(setPlayers, piece, turn) {
@@ -107,7 +107,7 @@ class Thief {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -121,7 +121,7 @@ class Thief {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -135,7 +135,7 @@ class Thief {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -149,7 +149,7 @@ class Thief {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -188,7 +188,7 @@ class Assassin {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   switchHome(newPosition, turn, setTurnGame) {
@@ -211,7 +211,7 @@ class Assassin {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   attackPiece(setPlayers, piece, turn, players) {
@@ -296,7 +296,7 @@ class KingRogue {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   attackPiece(setPlayers, piece, turn) {
@@ -312,7 +312,7 @@ class KingRogue {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -326,7 +326,7 @@ class KingRogue {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -340,7 +340,7 @@ class KingRogue {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -354,7 +354,7 @@ class KingRogue {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < attackThief.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }

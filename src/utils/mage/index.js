@@ -3,7 +3,6 @@ import king from '../../assets/characters/mage.png'
 import pyromante from '../../assets/characters/pyro.png'
 import sorcerer from '../../assets/characters/kingmage.gif'
 import sorcererAttack from '../../assets/attacks/sorcererAtk.gif'
-import thiefAttack from '../../assets/attacks/rogueAttack.gif'
 import { moveMage } from '../../services/moveMage'
 import { canMove } from '../../services/validMove'
 import { possibleSorcererAttack } from '../../services/possibleSorcererAttack'
@@ -89,7 +88,7 @@ class Sorcerer {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   attackPiece(setPlayers, piece, turn) {
@@ -105,7 +104,7 @@ class Sorcerer {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -119,7 +118,7 @@ class Sorcerer {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -133,7 +132,7 @@ class Sorcerer {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -147,7 +146,7 @@ class Sorcerer {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -168,7 +167,7 @@ class Piromancer {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
     this.typeMove = 1
-    this.damage = 3
+    this.damage = 2
     this.health = 5
     this.alive = true
     this.img = pyromante
@@ -204,7 +203,7 @@ class Piromancer {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   attackPiece(setPlayers, piece, turn, players) {
@@ -295,7 +294,7 @@ class KingMage {
       board,
       team,
       direction,
-      this.currentPosition,
+      this.currentPosition
     )
   }
   attackPiece(setPlayers, piece, turn) {
@@ -311,7 +310,7 @@ class KingMage {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -325,7 +324,7 @@ class KingMage {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -339,7 +338,7 @@ class KingMage {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }
@@ -353,7 +352,7 @@ class KingMage {
                   let attack = document.getElementsByClassName('attack')
                   setTimeout(() => {
                     for (let i = -3; i < sorcererAttack.length; i++) {
-                      attack[0].classList.remove('attack')
+                      attack[0]?.classList.remove('attack')
                     }
                   }, 1000)
                 }

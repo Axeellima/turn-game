@@ -4,7 +4,7 @@ export const possibleSorcererAttack = (
   board,
   team,
   direction,
-  currentPosition,
+  currentPosition
 ) => {
   if (team === 1) {
     for (let i = 0; i < homes.length; i++) {
@@ -18,23 +18,16 @@ export const possibleSorcererAttack = (
           homes[i + 1] + (Number(currentPosition.split('')[1]) - 1),
           homes[i - 1] + (Number(currentPosition.split('')[1]) + 1),
           homes[i - 1] + (Number(currentPosition.split('')[1]) - 1),
-
-          homes[i + 2] + currentPosition.split('')[1],
-          homes[i - 2] + currentPosition.split('')[1],
-          homes[i] + (Number(currentPosition.split('')[1]) - 2),
-          homes[i] + (Number(currentPosition.split('')[1]) + 2),
         ]
         for (let j = 0; j <= possibleAttacks.length; j++) {
           canAttack.find((home) => {
             if (home.canAttack === true && home.id === possibleAttacks[j]) {
               board.forEach((home) => {
                 if (home.props.id === possibleAttacks[j]) {
-                  const homeWhite = document.getElementsByClassName(
-                    'home-black',
-                  )
-                  const homeBlack = document.getElementsByClassName(
-                    'home-white',
-                  )
+                  const homeWhite =
+                    document.getElementsByClassName('home-black')
+                  const homeBlack =
+                    document.getElementsByClassName('home-white')
                   const allHome = [...homeWhite, ...homeBlack]
                   for (let i = 0; i < allHome.length; i++) {
                     if (allHome[i].id === possibleAttacks[j]) {
@@ -73,12 +66,10 @@ export const possibleSorcererAttack = (
             if (home.canAttack === true && home.id === possibleAttacks[j]) {
               board.forEach((home) => {
                 if (home.props.id === possibleAttacks[j]) {
-                  const homeWhite = document.getElementsByClassName(
-                    'home-black',
-                  )
-                  const homeBlack = document.getElementsByClassName(
-                    'home-white',
-                  )
+                  const homeWhite =
+                    document.getElementsByClassName('home-black')
+                  const homeBlack =
+                    document.getElementsByClassName('home-white')
                   const allHome = [...homeWhite, ...homeBlack]
                   for (let i = 0; i < allHome.length; i++) {
                     if (allHome[i].id === possibleAttacks[j]) {
