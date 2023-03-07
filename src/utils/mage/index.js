@@ -50,7 +50,7 @@ class Sorcerer {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
     this.typeMove = 1
-    this.damage = 1.5
+    this.damage = 2
     this.health = 5
     this.alive = true
     this.img = sorcerer
