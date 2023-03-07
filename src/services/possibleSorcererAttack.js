@@ -14,6 +14,10 @@ export const possibleSorcererAttack = (
           homes[i - 1] + currentPosition.split('')[1],
           homes[i] + (Number(currentPosition.split('')[1]) - 1),
           homes[i] + (Number(currentPosition.split('')[1]) + 1),
+          homes[i + 1] + (Number(currentPosition.split('')[1]) + 1),
+          homes[i + 1] + (Number(currentPosition.split('')[1]) - 1),
+          homes[i - 1] + (Number(currentPosition.split('')[1]) + 1),
+          homes[i - 1] + (Number(currentPosition.split('')[1]) - 1),
 
           homes[i + 2] + currentPosition.split('')[1],
           homes[i - 2] + currentPosition.split('')[1],
