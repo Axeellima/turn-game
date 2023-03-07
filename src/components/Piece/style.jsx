@@ -25,6 +25,7 @@ export const PieceStyle = styled.div`
     border-radius: 100%;
     position: relative;
     bottom: 100px;
+    z-index: 0;
   }
   .attack {
     position: relative;

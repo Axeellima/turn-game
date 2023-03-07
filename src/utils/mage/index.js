@@ -252,7 +252,7 @@ class KingMage {
     this.initialPosition = initialPosition
     this.currentPosition = initialPosition
     this.typeMove = 1
-    this.damage = 3
+    this.damage = 2
     this.health = 5
     this.alive = true
     this.img = king

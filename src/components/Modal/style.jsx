@@ -8,8 +8,9 @@ export const StyledModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
   .container-modal {
-    width: 45%;
+    width: 700px;
     box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.5);
     background-color: #222222;
     padding: 0px 30px 10px 30px;
@@ -22,7 +23,6 @@ export const StyledModal = styled.div`
   }
   .animation-assassin {
     width: 200px;
-    height: 250px;
     background-color: rgba(0, 0, 0, 0.85);
   }
   .info-class {
@@ -31,11 +31,10 @@ export const StyledModal = styled.div`
     color: black;
 
     width: 75%;
-    height: 250px;
   }
   .animation-mage {
     width: 200px;
-    height: 250px;
+    height: 200px;
     background-color: rgba(0, 0, 0, 0.85);
   }
   .header-modal {
@@ -51,7 +50,7 @@ export const StyledModal = styled.div`
     width: 30px;
     height: 30px;
     position: relative;
-    left: 310px;
+    left: 240px;
     top: 5px;
   }
 

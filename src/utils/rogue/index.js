@@ -49,7 +49,7 @@ class Thief {
     this.currentPosition = initialPosition
     this.typeMove = 3
     this.damage = 2
-    this.health = 5
+    this.health = 7
     this.alive = true
     this.img = thief
     this.attackedPiece = undefined

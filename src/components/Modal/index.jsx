@@ -9,7 +9,7 @@ const Modal = ({ handleOpenModal, openModal }) => {
   //   const [birdAnimation, setBirAnimation] = useState('animation-birds')
   return (
     <StyledModal
-      id="modal"
+      id='modal'
       onClick={(e) => {
         if (openModal && e.target.id === 'modal') {
           console.log(e)
@@ -17,62 +17,55 @@ const Modal = ({ handleOpenModal, openModal }) => {
         }
       }}
     >
-      <div className="container-modal">
-        <div className="header-modal">
+      <div className='container-modal'>
+        <div className='header-modal'>
           <h1>Classes</h1>
           <img
+            className='close-modal'
             src={closeIcon}
-            alt=""
+            alt=''
             onClick={() => {
               handleOpenModal()
             }}
           />
         </div>
-        <section className="class-modal">
-          <Lottie animationData={assassin} className="animation-assassin" />
+        <section className='class-modal'>
+          <Lottie animationData={assassin} className='animation-assassin' />
 
-          <div className="info-class">
+          <div className='info-class'>
             <h1>Ladrão</h1>
             <p>
-              Anda uma casa em qualquer direção, para atacar ele pode andar duas
-              casas de distância, caso ataque com apenas 1 casa de distância ele
-              causa apenas 1 de dano, atacando a duas casas causa 2 de dano.
+              Anda uma casa em qualquer direção, ao atacar causa 2 de dano na
+              unidade atacada.
             </p>
             <h1>Assassino</h1>
             <p>
               Anda uma casa em qualquer direção, causa 4 de dano ao atacar e 1
-              de dano as unidades em volta do alvo, caso de um backstab ele
-              causa dano critico de 5 de dano e 2 de dano as unidades em volta
-              do alvo (o assassino após realizar um ataque, fica 1 turno
-              imóvel).
+              de dano as unidades ao lado do alvo.
             </p>
             <h1>Guardião</h1>
             <p>
-              Pode andar uma casa para frente, para trás e para os lados, ele
-              tem 8 de vida, e pode recuperar 1hp por turno (caso não tenha
-              recebido nenhum dano no turno anterior).
+              O guardião se move em cruz ele tem 8 de vida e não possui ataque.
             </p>
           </div>
         </section>
-        <section className="class-modal">
-          <Lottie animationData={mage} className="animation-mage" />
+        <section className='class-modal'>
+          <Lottie animationData={mage} className='animation-mage' />
 
-          <div className="info-class">
+          <div className='info-class'>
             <h1>Feiticeiro</h1>
             <p>
-              O feiticeiro causa 2 de dano por ataque a unidade mais próxima
-              independente da distância (só pode ser invocado na linha 2)
+              O feiticeiro se move em cruz e causa 2 de dano a peça atacada e
+              ataca a 2 casas de distância em cru.
             </p>
             <h1>Pirômante</h1>
             <p>
-              Só pode ser invocado na linha 1, ele ataca em até 2 casas de
-              distância, causando 3 de dano no alvo e 2 nas cartas adjacentes.
+              O piromante se move em cruz e ataca em qualquer direção causa 2 de
+              dano a peça atacada e as peças ao lado.
             </p>
             <h1>Guardião</h1>
             <p>
-              Pode andar uma casa para frente, para trás e para os lados, ele
-              tem 8 de vida, e pode recuperar 1hp por turno (caso não tenha
-              recebido nenhum dano no turno anterior).
+              O guardião se move em cruz ele tem 8 de vida e não possui ataque.
             </p>
           </div>
         </section>
