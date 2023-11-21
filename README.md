@@ -50,7 +50,7 @@ Este projeto foi desenvolvido como parte do aprendizado por [Axel Lima](https://
 
 ## Como Jogar 🎮
 
-1. Clone este repositório: `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
+1. Clone este repositório: `git clone https://github.com/Axeellima/Turn-Game`
 2. Instale as dependências: `npm install`
 3. Inicie o jogo: `npm start`
 
