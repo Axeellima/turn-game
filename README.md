@@ -1,6 +1,6 @@
 # Turn Game 🏰♟️
 
-Bem-vindo ao Chess RPG, um emocionante jogo de xadrez com uma reviravolta de RPG, onde cada movimento estratégico leva você mais perto da vitória!
+Bem-vindo ao Turn Game, um emocionante jogo de xadrez com uma reviravolta de RPG, onde cada movimento estratégico leva você mais perto da vitória!
 
 ## Descrição do Projeto 🌟
 
@@ -32,6 +32,5 @@ Este projeto foi desenvolvido como parte do aprendizado por [Axel Lima](https://
 - [Matheus Guilherme](https://www.linkedin.com/in/matheus-guilherme-903351253/)
 - [Eduardo Fagotti](https://www.linkedin.com/in/eduardo-fagotti-34876b203/)
 
-Sinta-se à vontade para fazer um fork, abrir issues ou contribuir para tornar este jogo ainda mais incrível! 😄# Chess RPG 🏰♟️
-
+Sinta-se à vontade para fazer um fork, abrir issues ou contribuir para tornar este jogo ainda mais incrível! 😄
 
